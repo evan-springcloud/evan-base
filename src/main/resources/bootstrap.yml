@@ -10,14 +10,6 @@ spring:
         service-id: evan-config
       #profile: dev-local
 
-management:  #actuator
-  server:
-    port: 8035
-  endpoints:
-    web:
-      exposure:
-        include: "*"  #打开全部请求端点
-
 ---
 spring:
   profiles: single

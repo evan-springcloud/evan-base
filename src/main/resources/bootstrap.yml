@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active: single
+  application:
+    name: evan-base
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: evan-config
+      #profile: dev-local
+
+management:  #actuator
+  server:
+    port: 8035
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #打开全部请求端点
+
+---
+spring:
+  profiles: single
+
+server:
+  port: 8031
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8001/eureka/
+
+---
+spring:
+  profiles: ha-8032
+
+server:
+  port: 8032
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8002/eureka/
+
+---
+spring:
+  profiles: ha-8033
+
+server:
+  port: 8033
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8003/eureka/

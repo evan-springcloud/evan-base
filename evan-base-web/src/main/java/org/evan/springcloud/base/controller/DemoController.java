@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.api;
+package org.evan.springcloud.base.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-08-01
  */
 @RestController
-public class TestApi {
+public class DemoController {
 
     @Autowired
     private Environment environment;

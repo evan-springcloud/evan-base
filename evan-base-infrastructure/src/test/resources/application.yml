@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: evan-base-test
+  datasource:
+    url: jdbc:mysql://116.62.114.198:3306/btbs_base?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: MiZhi001
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:   #下面为连接池的补充设置，应用到上面数据源中
+      max-lifetime: 1000
+      minimum-idle: 4
+      idle-timeout: 1000
+      maximum-pool-size: 32
+      connection-test-query: SELECT 1
+      connection-timeout: 2000
+
+  redis:
+    host: 47.96.89.84
+    #host: 127.0.0.1
+    port: 6379
+    password: MiZhi001
+    #timeout: 3000
+    jedis:
+      pool:
+        max-active: 16  #最大连接数,0为没有限制
+        max-idle: 4   #最大等待连接中的数量, 0为没有限制
+        min-idle: 1   #最小等待连接中的数量
+        max-wait: 2000ms  #最大建立连接等待时间。如果超过此时间将接到异常
+#    lettuce:
+#      pool:
+#        max-idle: 2
+#        min-idle: 2
+#        max-active: 2
+#        max-wait: 2000ms
+
+logging:
+  pattern:
+    console: "%date{dd HH:mm:ss} %level [%thread] %msg。%-60caller{1}"
+  level:
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: warn
+    org.springframework.boot.autoconfigure.logging: warn
+    springfox.documentation: error
+    io.swagger: error
+    java.sql.Statement: debug
+    java.sql.PreparedStatement: debug
+    java.sql.ResultSet: debug
+    org.springframework.jdbc.core: TRACE
+    org.evan.springcloud.base: DEBUG
+
+

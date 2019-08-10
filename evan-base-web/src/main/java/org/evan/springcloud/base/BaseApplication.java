@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "org.evan.springcloud.base.api",
+        "org.evan.springcloud.base",
 })
 public class BaseApplication {
     public static void main(String[] args) {

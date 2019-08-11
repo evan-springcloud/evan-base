@@ -3,7 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,10 +21,17 @@
         <module>evan-base-web</module>
     </modules>
 
+    <properties>
+        <commons-lang.version>3.5</commons-lang.version>
+        <java.version>1.8</java.version>
+        <springboot.version>2.1.6.RELEASE</springboot.version>
+    </properties>
+
     <profiles>
         <profile>
             <id>develop</id>
             <properties>
+                <evan-libraries.version>1.0-SNAPSHOT</evan-libraries.version>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -34,15 +40,10 @@
         <profile>
             <id>release</id>
             <properties>
+                <evan-libraries.version>1.0</evan-libraries.version>
             </properties>
         </profile>
     </profiles>
-
-    <properties>
-        <commons-lang.version>3.5</commons-lang.version>
-        <java.version>1.8</java.version>
-        <springboot.version>2.1.6.RELEASE</springboot.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>

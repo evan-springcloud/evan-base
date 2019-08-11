@@ -1,7 +1,7 @@
 package test.org.evan.springcloud.base.testdata;
 
+import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.model.Demo;
-import org.evan.springcloud.base.utils.RandomUtil;
 
 import java.math.BigDecimal;
 
@@ -11,12 +11,12 @@ public class TestData {
         Demo demo = new Demo();
 
         demo.setFieldText(randomTitle());
-        demo.setFieldNumber(new BigDecimal(RandomUtil.randomInt(999999)));
+        demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));
         demo.setFieldRadio("1");
         // demo.setFieldCheckboxArray(new EnumSex[] { EnumSex.WOMAN });
         demo.setFieldSelect("2");
-        demo.setFieldHtmleditorCut(RandomUtil.randomName("TestCut"));
-        demo.setFieldHtmleditor(RandomUtil.randomName("TestContent"));
+        demo.setFieldHtmleditorCut(RandomDataUtil.randomName("TestCut"));
+        demo.setFieldHtmleditor(RandomDataUtil.randomName("TestContent"));
         demo.setFieldProvince("330000");
 
         demo.setFieldCity("330100");
@@ -50,7 +50,7 @@ public class TestData {
     // }
 
     public static String randomTitle() {
-        return RandomUtil.randomName("DEMO");
+        return RandomDataUtil.randomName("DEMO");
     }
 
 }

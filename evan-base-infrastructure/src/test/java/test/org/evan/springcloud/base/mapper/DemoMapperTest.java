@@ -19,16 +19,13 @@ import java.util.List;
 
 
 public class DemoMapperTest extends MySQLTestCaseSupport {
-
-    private static Logger log = LoggerFactory.getLogger(DemoMapperTest.class);
-
     @Autowired
     private DemoMapper demoMapper;
 
     @Test
     public void testLoad() {
         Demo demo = demoMapper.load(1L);
-        log.info(demo + "");
+        LOGGER.info(">>>> test load:" + demo + "");
     }
 
     @Test
@@ -36,12 +33,12 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     public void testInsert() {
         Demo demo = TestData.random();
         demoMapper.insert(demo);
-        log.info(demo.getId() + "");
+        LOGGER.info(">>>> test testInsert: id[{}]",demo.getId());
 
         demo = TestData.random();
         //demo.setFieldCity("12345677889");
         demoMapper.insert(demo);
-        log.info(demo.toString());
+        LOGGER.info(">>>> test testInsert:" + demo);
     }
 
     @Test
@@ -54,6 +51,8 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
         demo.setFieldHtmleditor("aaa");
 
         demoMapper.update(demo);
+
+        LOGGER.info(">>>> test testUpdate:" + demo);
     }
 
     @Test
@@ -82,7 +81,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //        demoQuery.setJoinDemoChild1(true);
         List<Demo> demos = demoMapper.queryList(demoQuery);
 
-        log.info(demos.size() + "");
+        LOGGER.info(">>>> testQueryForList:" + demos.size());
     }
 
     @Test
@@ -94,7 +93,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 
         List<Demo> demos = demoMapper.queryList(demoQuery);
 
-        log.info(demos.size() + "");
+        LOGGER.info(">>>> testQueryForCount:" + demos.size());
     }
 
     @Test

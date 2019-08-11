@@ -2,7 +2,7 @@ package org.evan.springcloud.base.config.mysql;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.evan.springcloud.base.MybatisUtil;
+import org.evan.libraries.orm.mybaties.MybatisUtil;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;

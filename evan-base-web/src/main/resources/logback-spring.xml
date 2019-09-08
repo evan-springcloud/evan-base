@@ -4,7 +4,7 @@
 
     <contextName>evan-spring-cloud</contextName>
     <!--   <property name="LOG_DIR" value="/mizhi-btbs/log" />-->
-    <property name="LOG_DIR" value="${LOG_DIR}"/>
+    <property name="LOG_DIR" value="logs"/>
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOG_DIR}/main.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

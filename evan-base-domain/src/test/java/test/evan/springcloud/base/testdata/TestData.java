@@ -1,4 +1,4 @@
-package base.testdata;
+package test.evan.springcloud.base.testdata;
 
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.model.Demo;

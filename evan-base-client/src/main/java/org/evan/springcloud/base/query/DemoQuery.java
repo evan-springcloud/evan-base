@@ -2,6 +2,7 @@ package org.evan.springcloud.base.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.evan.libraries.model.query.AbstractQueryParam;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ import java.util.Date;
  * Demo查询对象
  */
 @ApiModel("Demo查询对象")
-public class DemoQuery implements Serializable {
+public class DemoQuery extends AbstractQueryParam implements Serializable {
     private static final long serialVersionUID = 13792697920061L;
 
     @ApiModelProperty(value = "id数组")

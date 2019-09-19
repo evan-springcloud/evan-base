@@ -1,17 +1,18 @@
-package base.support;
+package test.evan.springcloud.base.support;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Created on 2017/7/16.
+ * Created on 2017/9/20.
  *
  * @author evan.shen
+ * @since
  */
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
-        "org.evan.springcloud.base.config.mysql"
-        , "org.evan.springcloud.base.*.repository"})
-public class MySQLTestBeansConfig {
+        "com.xudong.im.data.mongo"
+})
+public class MongoDBTestBeansConfig {
 
 }

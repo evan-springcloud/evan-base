@@ -1,4 +1,4 @@
-package base.support;
+package test.evan.springcloud.base.support;
 
 
 import org.junit.runner.RunWith;

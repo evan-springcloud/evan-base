@@ -1,4 +1,4 @@
-package base.support;
+package test.evan.springcloud.base.support;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;

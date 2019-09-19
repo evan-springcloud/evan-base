@@ -1,8 +1,8 @@
-package base.mapper;
+package test.evan.springcloud.base.demo;
 
 
-import base.support.MySQLTestCaseSupport;
-import base.testdata.TestData;
+import test.evan.springcloud.base.support.MySQLTestCaseSupport;
+import test.evan.springcloud.base.testdata.TestData;
 import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.evan.springcloud.base.query.DemoQuery;

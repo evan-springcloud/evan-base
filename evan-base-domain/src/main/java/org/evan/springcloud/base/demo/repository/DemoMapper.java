@@ -1,9 +1,9 @@
-package org.evan.springcloud.base.repository.mapper;
-
+package org.evan.springcloud.base.demo.repository;
 
 import org.apache.ibatis.annotations.Param;
+import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.query.DemoQuery;
-import org.evan.springcloud.base.model.Demo;
+
 
 import java.io.Serializable;
 import java.util.List;

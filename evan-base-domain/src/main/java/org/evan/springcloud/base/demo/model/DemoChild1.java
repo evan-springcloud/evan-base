@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.model;
+package org.evan.springcloud.base.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;

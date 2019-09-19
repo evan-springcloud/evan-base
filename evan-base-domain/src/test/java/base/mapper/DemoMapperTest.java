@@ -1,22 +1,18 @@
-package test.org.evan.springcloud.base.mapper;
+package base.mapper;
 
 
-import org.evan.springcloud.base.model.Demo;
+import base.support.MySQLTestCaseSupport;
+import base.testdata.TestData;
+import org.evan.springcloud.base.demo.model.Demo;
+import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.evan.springcloud.base.query.DemoQuery;
-import org.evan.springcloud.base.repository.mapper.DemoMapper;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
-import test.org.evan.springcloud.base.support.MySQLTestCaseSupport;
-import test.org.evan.springcloud.base.testdata.TestData;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-
 
 public class DemoMapperTest extends MySQLTestCaseSupport {
     @Autowired
@@ -67,7 +63,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     }
 
     @Test
-    public void testQueryForList() throws ParseException {
+    public void testQueryForList()  {
         DemoQuery demoQuery = new DemoQuery();
 //        demoQuery.setGmtCreateFrom(DateUtils.parse("2011-01-01"));
 //        demoQuery.setGmtCreateTo(DateUtils.parse("2013-12-31"));

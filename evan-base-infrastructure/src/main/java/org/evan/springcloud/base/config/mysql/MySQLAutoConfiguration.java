@@ -24,12 +24,12 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @MapperScan(basePackages = {
-        "org.evan.springcloud.base.repository.mapper",
+        "org.evan.springcloud.base.*.repository",
 }) //mybatis mapper 所在package
 public class MySQLAutoConfiguration implements TransactionManagementConfigurer {
 
     private static final String TYPE_ALIASES_PACKAGE =
-            "org.evan.springcloud.base.query,org.evan.springcloud.base.model";
+            "org.evan.springcloud.base.query,org.evan.springcloud.base.*.model";
 
     @Autowired
     private DataSource dataSource;

@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.repository.jdbc;
+package org.evan.springcloud.base.demo.repository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

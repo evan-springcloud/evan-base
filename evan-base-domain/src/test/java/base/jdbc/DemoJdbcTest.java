@@ -1,10 +1,10 @@
-package test.org.evan.springcloud.base.jdbc;
+package base.jdbc;
 
-
-import org.evan.springcloud.base.repository.jdbc.DemoJdbc;
+import base.support.MySQLTestCaseSupport;
+import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import test.org.evan.springcloud.base.support.MySQLTestCaseSupport;
+
 
 /**
  * DemoJdbc Tester.

@@ -37,3 +37,5 @@ logging:
     java.sql.ResultSet: debug
     org.springframework.jdbc.core: TRACE
     org.evan.springcloud.base: DEBUG
+
+

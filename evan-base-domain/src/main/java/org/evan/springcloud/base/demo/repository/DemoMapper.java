@@ -2,7 +2,7 @@ package org.evan.springcloud.base.demo.repository;
 
 import org.apache.ibatis.annotations.Param;
 import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.query.DemoQuery;
+import org.evan.springcloud.base.demo.model.DemoQuery;
 
 
 import java.io.Serializable;

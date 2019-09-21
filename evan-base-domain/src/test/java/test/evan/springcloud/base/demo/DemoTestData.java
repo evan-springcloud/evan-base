@@ -1,14 +1,15 @@
-package test.evan.springcloud.base.testdata;
+package test.evan.springcloud.base.demo;
 
 import org.evan.libraries.utils.RandomDataUtil;
-import org.evan.springcloud.base.demo.model.Demo;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
+import org.evan.springcloud.base.demo.model.DemoModel;
 
 import java.math.BigDecimal;
 
-public class TestData {
-    public static Demo random() {
+public class DemoTestData {
+    public static DemoModel randomDemoModel() {
 
-        Demo demo = new Demo();
+        DemoModel demo = new DemoModel();
 
         demo.setFieldText(randomTitle());
         demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));
@@ -27,6 +28,23 @@ public class TestData {
 //		iu.setScaleFileUploadedPath("/a/b");
 //
 //		demo.setPicture(iu);
+
+        return demo;
+    }
+
+    public static DemoAddUpdateParams randomDemoAddUpdateParams() {
+
+        DemoAddUpdateParams demo = new DemoAddUpdateParams();
+
+        demo.setFieldText(randomTitle());
+        demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));
+        demo.setFieldRadio("1");
+        demo.setFieldSelect("2");
+        demo.setFieldHtmleditorCut(RandomDataUtil.randomName("TestCut"));
+        demo.setFieldHtmleditor(RandomDataUtil.randomName("TestContent"));
+        demo.setFieldProvince("330000");
+        demo.setFieldCity("330100");
+        demo.setFieldRegion("330106");
 
         return demo;
     }

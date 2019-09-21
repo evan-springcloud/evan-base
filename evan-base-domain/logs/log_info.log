@@ -1,0 +1,72 @@
+19-09-21 11:07:37 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : Starting DemoMapperTest on evan-macbook with PID 1222 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:07:37 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : No active profile set, falling back to default profiles: default
+19-09-21 11:07:38 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:07:38 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:07:38 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:07:38 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : Started DemoMapperTest in 2.018 seconds (JVM running for 2.895)
+19-09-21 11:07:39 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> test load:Demo{id=1, gmtCreate=Sat Aug 10 15:44:29 CST 2019, gmtModify=Sat Aug 10 15:44:29 CST 2019, status=1, fieldDate=null, fieldDatetime=null, fieldSelect='null', fieldRadio='null', fieldCheckbox='null', fieldNumber=null, fieldText='我的', fieldProvince='null', fieldCity='null', fieldRegion='null', imagePath='null', imagePathList='null', fieldTextarea='null', fieldHtmleditor='null', fieldHtmleditorCut='null'}
+19-09-21 11:07:39 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:07:39 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:07:52 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : Starting DemoMapperTest on evan-macbook with PID 1236 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:07:52 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : No active profile set, falling back to default profiles: default
+19-09-21 11:07:53 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:07:53 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:07:54 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : Started DemoMapperTest in 1.919 seconds (JVM running for 2.553)
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> test load:Demo{id=1, gmtCreate=Sat Aug 10 15:44:29 CST 2019, gmtModify=Sat Aug 10 15:44:29 CST 2019, status=1, fieldDate=null, fieldDatetime=null, fieldSelect='null', fieldRadio='null', fieldCheckbox='null', fieldNumber=null, fieldText='我的', fieldProvince='null', fieldCity='null', fieldRegion='null', imagePath='null', imagePathList='null', fieldTextarea='null', fieldHtmleditor='null', fieldHtmleditorCut='null'}
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> testQueryForCount:9
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> test testInsert: id[42]
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> test testInsert:Demo{id=43, gmtCreate=null, gmtModify=null, status=null, fieldDate=null, fieldDatetime=null, fieldSelect='2', fieldRadio='1', fieldCheckbox='null', fieldNumber=950878, fieldText='DEMO5433', fieldProvince='330000', fieldCity='330100', fieldRegion='330106', imagePath='null', imagePathList='null', fieldTextarea='null', fieldHtmleditor='TestContent64', fieldHtmleditorCut='TestCut7859'}
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> test testUpdate:Demo{id=4823, gmtCreate=null, gmtModify=null, status=null, fieldDate=null, fieldDatetime=Sat Sep 21 11:07:54 CST 2019, fieldSelect='null', fieldRadio='null', fieldCheckbox='null', fieldNumber=22121212.312121212, fieldText='BBB', fieldProvince='null', fieldCity='null', fieldRegion='null', imagePath='null', imagePathList='null', fieldTextarea='null', fieldHtmleditor='aaa', fieldHtmleditorCut='null'}
+19-09-21 11:07:54 [                main] INFO  t.e.s.b.d.DemoMapperTest                           : >>>> testQueryForList:43
+19-09-21 11:07:54 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:07:54 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:11:13 [                main] INFO  t.e.s.b.d.DemoJdbcTest                             : Starting DemoJdbcTest on evan-macbook with PID 1278 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:11:13 [                main] INFO  t.e.s.b.d.DemoJdbcTest                             : No active profile set, falling back to default profiles: default
+19-09-21 11:11:13 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:11:14 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:11:14 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:11:14 [                main] INFO  t.e.s.b.d.DemoJdbcTest                             : Started DemoJdbcTest in 1.908 seconds (JVM running for 2.501)
+19-09-21 11:11:14 [                main] INFO  t.e.s.b.d.DemoJdbcTest                             : >>>> testCheckFieldText, result is [true]
+19-09-21 11:11:14 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:11:14 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:45:53 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Starting DemoApplicationServiceTest on evan-macbook with PID 1838 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:45:53 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : No active profile set, falling back to default profiles: default
+19-09-21 11:45:54 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:45:54 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:45:54 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:45:55 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Started DemoApplicationServiceTest in 1.979 seconds (JVM running for 2.618)
+19-09-21 11:45:55 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:45:55 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:48:09 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Starting DemoApplicationServiceTest on evan-macbook with PID 1868 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:48:09 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : No active profile set, falling back to default profiles: default
+19-09-21 11:48:09 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:48:09 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:48:10 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:48:10 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Started DemoApplicationServiceTest in 1.912 seconds (JVM running for 3.332)
+19-09-21 11:48:10 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:48:10 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:48:59 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Starting DemoApplicationServiceTest on evan-macbook with PID 1882 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:48:59 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : No active profile set, falling back to default profiles: default
+19-09-21 11:49:00 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:49:00 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:49:00 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:49:00 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Started DemoApplicationServiceTest in 1.71 seconds (JVM running for 2.303)
+19-09-21 11:49:00 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:49:00 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:50:00 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Starting DemoApplicationServiceTest on evan-macbook with PID 1900 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:50:00 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : No active profile set, falling back to default profiles: default
+19-09-21 11:50:01 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:50:01 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:50:01 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:50:02 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Started DemoApplicationServiceTest in 1.688 seconds (JVM running for 2.276)
+19-09-21 11:50:02 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:50:02 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.
+19-09-21 11:50:19 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Starting DemoApplicationServiceTest on evan-macbook with PID 1906 (started by evan in /Users/evan/sources/evan/java/evan-springcloud/evan-base/evan-base-domain)
+19-09-21 11:50:19 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : No active profile set, falling back to default profiles: default
+19-09-21 11:50:19 [                main] INFO  o.e.l.o.m.MybatisUtil                              : Inited SqlSessionFactory,typeAliasesPackage:[org.evan.springcloud.base.**.model],mapperLocations:[classpath*:mapper/*Mapper.xml],Mappers:[DemoMapper.xml]
+19-09-21 11:50:20 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Starting...
+19-09-21 11:50:20 [                main] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Start completed.
+19-09-21 11:50:20 [                main] INFO  t.e.s.b.d.DemoApplicationServiceTest               : Started DemoApplicationServiceTest in 1.845 seconds (JVM running for 2.512)
+19-09-21 11:50:21 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown initiated...
+19-09-21 11:50:21 [            Thread-2] INFO  c.z.h.HikariDataSource                             : HikariPool-1 - Shutdown completed.

@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * DEMO 子表
  */
-public class DemoChild1 implements Serializable {
+public class DemoChild1Model implements Serializable {
     private static final long serialVersionUID = 13800282362952L;
 
     private Long id;//
@@ -16,13 +16,13 @@ public class DemoChild1 implements Serializable {
     private Date gmtCreate;//
     private Integer status;//1:正常,  -1:已删除
 
-    public DemoChild1() {
+    public DemoChild1Model() {
     }
 
     /**
      * @param id --
      */
-    public DemoChild1(Long id) {
+    public DemoChild1Model(Long id) {
         this.id = id;
     }
 

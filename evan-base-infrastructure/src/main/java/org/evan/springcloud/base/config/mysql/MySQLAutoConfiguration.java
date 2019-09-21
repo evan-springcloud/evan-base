@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 public class MySQLAutoConfiguration implements TransactionManagementConfigurer {
 
     private static final String TYPE_ALIASES_PACKAGE =
-            "org.evan.springcloud.base";
+            "org.evan.springcloud.base.**.model";
 
     @Autowired
     private DataSource dataSource;

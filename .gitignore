@@ -1,7 +1,5 @@
 /target/
 */target/
-/LOG_DIR_IS_UNDEFINED
-/*/LOG_DIR_IS_UNDEFINED
-
+*/logs
 .idea
 *.iml

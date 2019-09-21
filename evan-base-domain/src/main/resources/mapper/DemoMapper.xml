@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.evan.springcloud.base.demo.repository.DemoMapper">
-    <resultMap id="demoMap" type="demo">
+    <resultMap id="demoMap" type="demoModel">
         <id column="ID" property="id"/>
         <result column="FIELD_REGION" property="fieldRegion"/>
         <result column="IMAGE_PATH" property="imagePath"/>
@@ -33,7 +33,7 @@
 <!--        </collection>-->
     </resultMap>
 
-    <insert id="insert" parameterType="demo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="demoModel" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="id" order="BEFORE" resultType="long" databaseId="oracle">
             select
             SEQ_demo.nextval from dual
@@ -88,7 +88,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="demo">
+    <update id="update" parameterType="demoModel">
         update demo
         <set>
             <if test="fieldRegion != null">FIELD_REGION=#{fieldRegion,jdbcType=VARCHAR},</if>
@@ -121,9 +121,9 @@
 
     <sql id="queryCommonSql">
         FROM demo d
-        <if test="joinDemoChild1">, demo_child1 demoChild1</if>
+<!--        <if test="joinDemoChild1">, demo_child1 demoChild1</if>-->
         <where>
-            <if test="joinDemoChild1">d.ID=demoChild1.demo_ID</if>
+<!--            <if test="joinDemoChild1">d.ID=demoChild1.demo_ID</if>-->
             <if test="idArray != null">
                 and d.ID in
                 <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">#{item}
@@ -147,31 +147,31 @@
                         <![CDATA[and d.GMT_MODIFY < date_add( #{gmtCreateTo}, interval 1 day)]]></when>
                 </choose>
             </if>
-            <if test="fieldHtmleditorCut != null and fieldHtmleditorCut.trim() !=''">
-                and d.FIELD_HTMLEDITOR_CUT like
-                <choose>
-                    <when test="_databaseId=='oracle'">
-                        '%' || #{fieldHtmleditorCut} || '%'
-                    </when>
-                    <when test="_databaseId=='mysql'">
-                        CONCAT('%',#{fieldHtmleditorCut},'%')
-                    </when>
-                </choose>
-            </if>
+<!--            <if test="fieldHtmleditorCut != null and fieldHtmleditorCut.trim() !=''">-->
+<!--                and d.FIELD_HTMLEDITOR_CUT like-->
+<!--                <choose>-->
+<!--                    <when test="_databaseId=='oracle'">-->
+<!--                        '%' || #{fieldHtmleditorCut} || '%'-->
+<!--                    </when>-->
+<!--                    <when test="_databaseId=='mysql'">-->
+<!--                        CONCAT('%',#{fieldHtmleditorCut},'%')-->
+<!--                    </when>-->
+<!--                </choose>-->
+<!--            </if>-->
             <if test="fieldRadio != null and fieldRadio.trim() !=''">and d.FIELD_RADIO=#{fieldRadio}</if>
             <if test="fieldNumberFrom != null">and d.FIELD_NUMBER >= #{fieldNumberFrom}</if>
             <if test="fieldNumberTo != null"><![CDATA[and d.FIELD_NUMBER <= #{fieldNumberTo}]]></if>
-            <if test="fieldTextarea != null and fieldTextarea.trim() !=''">
-                and d.FIELD_TEXTAREA like
-                <choose>
-                    <when test="_databaseId=='oracle'">
-                        '%' || #{fieldTextarea} || '%'
-                    </when>
-                    <when test="_databaseId=='mysql'">
-                        CONCAT('%',#{fieldTextarea},'%')
-                    </when>
-                </choose>
-            </if>
+<!--            <if test="fieldTextarea != null and fieldTextarea.trim() !=''">-->
+<!--                and d.FIELD_TEXTAREA like-->
+<!--                <choose>-->
+<!--                    <when test="_databaseId=='oracle'">-->
+<!--                        '%' || #{fieldTextarea} || '%'-->
+<!--                    </when>-->
+<!--                    <when test="_databaseId=='mysql'">-->
+<!--                        CONCAT('%',#{fieldTextarea},'%')-->
+<!--                    </when>-->
+<!--                </choose>-->
+<!--            </if>-->
             <if test="fieldSelect != null ">and d.FIELD_SELECT=#{fieldSelect}</if>
             <if test="gmtModifyFrom != null">and d.GMT_MODIFY >= #{gmtModifyFrom}</if>
             <if test="gmtModifyTo != null">
@@ -214,17 +214,17 @@
                     </if>
                 </otherwise>
             </choose>
-            <if test="fieldHtmleditor != null and fieldHtmleditor.trim() !=''">
-                and d.FIELD_HTMLEDITOR like
-                <choose>
-                    <when test="_databaseId=='oracle'">
-                        '%' || #{fieldHtmleditor} || '%'
-                    </when>
-                    <when test="_databaseId=='mysql'">
-                        CONCAT('%',#{fieldHtmleditor},'%')
-                    </when>
-                </choose>
-            </if>
+<!--            <if test="fieldHtmleditor != null and fieldHtmleditor.trim() !=''">-->
+<!--                and d.FIELD_HTMLEDITOR like-->
+<!--                <choose>-->
+<!--                    <when test="_databaseId=='oracle'">-->
+<!--                        '%' || #{fieldHtmleditor} || '%'-->
+<!--                    </when>-->
+<!--                    <when test="_databaseId=='mysql'">-->
+<!--                        CONCAT('%',#{fieldHtmleditor},'%')-->
+<!--                    </when>-->
+<!--                </choose>-->
+<!--            </if>-->
             <if test="fieldCity != null and fieldCity.trim() !=''">and d.FIELD_CITY = #{fieldCity}</if>
         </where>
     </sql>
@@ -267,17 +267,17 @@
                 ,d.FIELD_DATE
                 ,d.STATUS
                 ,d.FIELD_CITY
-                <if test="joinDemoChild1">
-                    ,demoChild1.ID as demo_child1_ID
-                    ,demoChild1.demo_ID
-                    ,demoChild1.GMT_MODIFY as
-                    demo_child1_gmt_modify
-                    ,demoChild1.FIELD_TEXT as demo_child1_FIELD_TEXT
-                    ,demoChild1.GMT_CREATE as
-                    demo_child1_GMT_CREATE
-                    ,demoChild1.STATUS
-                    as demo_child1_STATUS
-                </if>
+<!--                <if test="joinDemoChild1">-->
+<!--                    ,demoChild1.ID as demo_child1_ID-->
+<!--                    ,demoChild1.demo_ID-->
+<!--                    ,demoChild1.GMT_MODIFY as-->
+<!--                    demo_child1_gmt_modify-->
+<!--                    ,demoChild1.FIELD_TEXT as demo_child1_FIELD_TEXT-->
+<!--                    ,demoChild1.GMT_CREATE as-->
+<!--                    demo_child1_GMT_CREATE-->
+<!--                    ,demoChild1.STATUS-->
+<!--                    as demo_child1_STATUS-->
+<!--                </if>-->
             </otherwise>
         </choose>
         <include refid="queryCommonSql"/>
@@ -290,7 +290,7 @@
         <include refid="queryCommonSql"/>
     </select>
 
-    <update id="updateStatus" parameterType="demo">
+    <update id="updateStatus" parameterType="demoModel">
         update demo set status=#{status} where ID=#{id}
     </update>
 

@@ -10,5 +10,8 @@ import lombok.Data;
 @ApiModel("示例")
 @Data
 public class DemoRepresentation extends DemoModel {
-
+    @Override
+    public String toString() {
+        return "DemoRepresentation{} " + super.toString();
+    }
 }

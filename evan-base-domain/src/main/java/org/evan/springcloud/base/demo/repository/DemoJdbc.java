@@ -16,7 +16,7 @@ public class DemoJdbc {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public boolean checkFieldText(Long id,String fieldText) {
+    public boolean notExists(Long id, String fieldText) {
 
         List<Object> list = new ArrayList<Object>();
         StringBuilder sql = new StringBuilder(128);

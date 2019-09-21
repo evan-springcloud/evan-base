@@ -16,7 +16,7 @@ public class DemoQuery extends AbstractQueryParam implements Serializable {
     private static final long serialVersionUID = 13792697920061L;
 
     @ApiModelProperty(value = "id数组")
-    private long[] idArray;
+    private Long[] idArray;
 
     @ApiModelProperty(value = "单个状态", allowableValues = "1,2")
     private Integer status;
@@ -78,12 +78,12 @@ public class DemoQuery extends AbstractQueryParam implements Serializable {
     /**
      *
      */
-    public long[] getIdArray() {
+    public Long[] getIdArray() {
         return idArray;
     }
 
     /***/
-    public void setIdArray(long[] idArray) {
+    public void setIdArray(Long[] idArray) {
         this.idArray = idArray;
     }
 

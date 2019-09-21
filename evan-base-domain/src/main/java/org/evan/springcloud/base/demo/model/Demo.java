@@ -1,7 +1,7 @@
 package org.evan.springcloud.base.demo.model;
 
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
-import org.springframework.beans.BeanUtils;
+import org.evan.springcloud.base.utils.BeanUtil;
 
 /**
  * @author Evan.Shen
@@ -10,7 +10,7 @@ import org.springframework.beans.BeanUtils;
 public class Demo extends DemoModel {
     public Demo newDemo(DemoAddUpdateParams demoAddUpdateParams) {
         Demo demo = new Demo();
-        BeanUtils.copyProperties(demoAddUpdateParams, demo);
+        BeanUtil.quickCopy(demoAddUpdateParams, demo);
         demo.setStatus(PublishStatusEnum.PUBLISHED.getValue());
         return demo;
     }
@@ -18,7 +18,7 @@ public class Demo extends DemoModel {
     public Demo updateDemo(long id, DemoAddUpdateParams demoAddUpdateParams) {
         Demo demo = new Demo();
 
-        BeanUtils.copyProperties(demoAddUpdateParams, demo);
+        BeanUtil.quickCopy(demoAddUpdateParams, demo);
         demo.setId(id);
 
         return demo;

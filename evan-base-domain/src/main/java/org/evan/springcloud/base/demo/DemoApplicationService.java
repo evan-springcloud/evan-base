@@ -1,6 +1,7 @@
 package org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.evan.libraries.exception.DataNotFindException;
 import org.evan.libraries.model.result.OperateCommonResultType;
 import org.evan.libraries.model.result.OperateResult;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
@@ -8,7 +9,6 @@ import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
 import org.evan.springcloud.base.demo.model.DemoFactory;
 import org.evan.springcloud.base.demo.model.DemoModel;
-import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 public class DemoApplicationService {
-
     public static final String UPLOAD_FIRST_SUB_PATH = "/demo";
 
     @Autowired
     private DemoFactory demoFactory;
-
-    @Autowired
-    private DemoJdbc demoDao;
 
     @Autowired
     private DemoMapper demoMapper;
@@ -40,7 +36,7 @@ public class DemoApplicationService {
 //    private DataDictionaryService dataDictionaryService;
 
     @Transactional
-    public OperateResult add(DemoAddUpdateParams demoAddUpdateParams) {
+    public OperateResult<Demo> add(DemoAddUpdateParams demoAddUpdateParams) {
         OperateResult result = OperateResult.create();
         // 验证
         //BeanValidators.validateWithException(validator, demoAddUpdateParams);
@@ -53,15 +49,16 @@ public class DemoApplicationService {
     }
 
     @Transactional
-    public OperateResult update(long demoId, DemoAddUpdateParams demoAddUpdateParams) {
+    public OperateResult update(DemoAddUpdateParams demoAddUpdateParams) {
         OperateResult result = OperateResult.create();
 
-        Demo demo = demoFactory.create(demoAddUpdateParams);
+        Long demoId = demoAddUpdateParams.getId();
 
-        DemoModel demoOld = demoMapper.load(demo.getId());
+        DemoModel demoOld = demoMapper.load(demoId);
         if (demoOld == null) {
-            result.setCode(OperateCommonResultType.DATA_NOT_FIND);
+            result.setCode(OperateCommonResultType.DATA_NOT_FIND); //通过返回代码告知调用者
         } else {
+            Demo demo = demoFactory.create(demoId, demoAddUpdateParams);
             demoMapper.update(demo);
         }
         return result;
@@ -75,15 +72,13 @@ public class DemoApplicationService {
      * @return
      */
     @Transactional
-    public OperateResult remove(long demoId) {
-        OperateResult result = OperateResult.create();
+    public void remove(long demoId) {
         DemoModel demo = demoMapper.load(demoId);
         if (demo == null) {
-            result.setCode(OperateCommonResultType.DATA_NOT_FIND);
+            throw new DataNotFindException(); //通过抛异常的方式告知调用者
         } else {
             demoMapper.delete(demoId);
         }
-        return result;
     }
 
     /**
@@ -92,13 +87,10 @@ public class DemoApplicationService {
      * @param demoIds
      * @return
      */
-    public OperateResult removeBatch(Long[] demoIds) {
-        OperateResult result = OperateResult.create();
-
+    public void removeBatch(Long[] demoIds) {
         for (long demoId : demoIds) {
             demoMapper.delete(demoId);
         }
-        return result;
     }
 
 //    private void removeInner(long demo) {
@@ -131,13 +123,12 @@ public class DemoApplicationService {
      * @param newStatus
      * @return
      */
-    public OperateResult updateStatusBatch(Long[] demoIds, PublishStatusEnum newStatus) {
+    public void updateStatusBatch(Long[] demoIds, PublishStatusEnum newStatus) {
         OperateResult result = OperateResult.create();
 
         for (long demoId : demoIds) {
             updateStatusInner(demoId, newStatus);
         }
-        return result;
     }
 
     private void updateStatusInner(long demoId, PublishStatusEnum newStatus) {

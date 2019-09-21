@@ -1,16 +1,18 @@
 package org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.evan.libraries.model.result.PageResult;
 import org.evan.springcloud.base.demo.model.DemoModel;
 import org.evan.springcloud.base.demo.model.DemoQuery;
+import org.evan.springcloud.base.demo.model.DemoRepresentation;
 import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
+import org.evan.springcloud.base.utils.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,12 +32,12 @@ public class DemoRepresentationService {
     @Autowired
     private DemoMapper demoMapper;
 
-    public PageResult<DemoModel> query(DemoQuery demoQuery) {
+    public PageResult<DemoRepresentation> query(DemoQuery demoQuery) {
         Assert.notNull(demoQuery, "Not find query param [DemoQuery]");
 
         // 如果排序编号(见DemoQuery.SortCode)不为空，而排序表达式为空，则需要将排序代码转换成排序表达式
-        boolean isNeedConvertSortCodeToSortExpression = StringUtils.isBlank(demoQuery.getSort())
-                && StringUtils.isNotBlank(demoQuery.getSortCode());
+//        boolean isNeedConvertSortCodeToSortExpression = StringUtils.isBlank(demoQuery.getSort())
+//                && StringUtils.isNotBlank(demoQuery.getSortCode());
 
 //        if (isNeedConvertSortCodeToSortExpression) {// 转换排序编号成排序表达式
 //            DemoQuery.SortCode sortCode = null;
@@ -47,48 +49,61 @@ public class DemoRepresentationService {
 //            }
 //        }
 
-        List<DemoModel> data = demoMapper.queryList(demoQuery);
-        int recordCount = demoMapper.queryCount(demoQuery);
+        PageResult<DemoRepresentation> pageResult = PageResult.create(demoQuery);
 
-        PageResult<DemoModel> pageResult = PageResult.create(demoQuery, data, recordCount);
-
-        // 将列表中每条数据中的值属性转换成用于显示文本
-        int dataCount = pageResult.getData().size();
-        // 循环的时候缓存结果，遇到相同的数据，从缓存中取出，缓存new的时候就分配大小，尽量不要出现扩容的情况
-        Map<String, String> dataDictCache = new HashMap<String, String>(dataCount);
-        Map<String, String> regionCache = new HashMap<String, String>(dataCount * 2);
-        for (DemoModel demo : pageResult.getData()) {
-            //convertValueToText(demo, dataDictCache, regionCache);
+        if (demoQuery.getPageSize() == 0) {
+            demoQuery.setPageSize(DemoQuery.DEFAULT_PAGE_SIZE);
         }
-        dataDictCache = null;
-        regionCache = null;
 
-        // 清除排序表达式
-        if (isNeedConvertSortCodeToSortExpression) {
-            demoQuery.setSort(null);
+        //demoQuery.setIncludeDeleted(true);
+
+        int recordCount = demoMapper.queryCount(demoQuery);
+        pageResult.setRecordCount(recordCount);
+
+//        // 清除排序表达式
+//        if (isNeedConvertSortCodeToSortExpression) {
+//            demoQuery.setSort(null);
+//        }
+
+        if (recordCount > 0) {
+            List<DemoModel> demos = demoMapper.queryList(demoQuery);
+            List<DemoRepresentation> demoRepresentations = convertRepresentation(demos);
+
+            pageResult.setData(demoRepresentations);
         }
 
         return pageResult;
     }
 
-//    private void convertValueToText(Demo demo, Map<String, String> dataDictCache, Map<String, String> regionCache) {
-//        // 转化地区
-//        demo.setFieldProvinceName(regionService.getNameByCode(demo.getFieldProvince(), regionCache));
-//        demo.setFieldCityName(regionService.getNameByCode(demo.getFieldCity(), regionCache));
-//        demo.setFieldRegionName(regionService.getNameByCode(demo.getFieldRegion(), regionCache));
-//
-//        // 根据数据字典表将值转换成文本
-//        String fieldSelectText = dataDictionaryService.getForString("education", demo.getFieldSelect(), dataDictCache);
-//        demo.setFieldSelectText(fieldSelectText);
-//    }
+    private List<DemoRepresentation> convertRepresentation(List<DemoModel> demos) {
+        int recordCountOnCurrentPage = demos.size();
+        List<DemoRepresentation> demoRepresentations = new ArrayList<>(recordCountOnCurrentPage);
 
+        // 将列表中每条数据中的值属性转换成用于显示文本
+        // 循环的时候缓存结果，遇到相同的数据，从缓存中取出，缓存new的时候就分配大小，尽量不要出现扩容的情况
+        Map<String, String> dataDictCache = new HashMap<>(recordCountOnCurrentPage);
+        Map<String, String> regionCache = new HashMap<>(recordCountOnCurrentPage * 2);
+        for (DemoModel o : demos) {
+            DemoRepresentation demoRepresentation = new DemoRepresentation();
 
-    public DemoModel getById(long id) {
-        DemoModel demo = demoMapper.load(id);// 取demo
-        if (demo != null) {
-            //convertValueToText(demo, null, null);
+            BeanUtil.quickCopy(o, demoRepresentation);
+            convertValueToText(demoRepresentation, dataDictCache, regionCache);
+
+            demoRepresentations.add(demoRepresentation);
         }
-        return demo;
+
+        return demoRepresentations;
+    }
+
+    public DemoRepresentation getById(long id) {
+        DemoModel demo = demoMapper.load(id);// 取demo
+        DemoRepresentation demoRepresentation = new DemoRepresentation();
+
+        if (demo != null) {
+            BeanUtil.quickCopy(demo, demoRepresentation);
+            convertValueToText(demoRepresentation, null, null);
+        }
+        return demoRepresentation;
     }
 
     /**
@@ -99,7 +114,7 @@ public class DemoRepresentationService {
      * author: <a href="mailto:shenw@hundsun.com">shenw</a><br>
      * create at: 2014年4月16日上午2:03:44
      */
-    public List<DemoModel> getByIds(long[] demoIds) {
+    public List<DemoRepresentation> getByIds(Long[] demoIds) {
         DemoQuery demoQuery = new DemoQuery();
         demoQuery.setIdArray(demoIds);
 //        demoQuery.setColumns(DemoColumns.ID.getColumn(), DemoColumns.FIELD_TEXT.getColumn(),
@@ -107,12 +122,24 @@ public class DemoRepresentationService {
         demoQuery.setSortByDefault(false);
         demoQuery.setIncludeDeleted(true);
 
-        List<DemoModel> demoEntities = demoMapper.queryList(demoQuery);
-        return demoEntities;
+        List<DemoModel> demos = demoMapper.queryList(demoQuery);
+        List<DemoRepresentation> demoRepresentations = convertRepresentation(demos);
+        return demoRepresentations;
     }
 
 
-    public boolean checkFieldText(Long id, String fieldText) {
-        return demoDao.checkFieldText(id, fieldText);
+    public boolean notExists(Long id, String fieldText) {
+        return demoDao.notExists(id, fieldText);
+    }
+
+    private void convertValueToText(DemoRepresentation demoRepresentation, Map<String, String> dataDictCache, Map<String, String> regionCache) {
+//        // 转化地区
+//        demo.setFieldProvinceName(regionService.getNameByCode(demo.getFieldProvince(), regionCache));
+//        demo.setFieldCityName(regionService.getNameByCode(demo.getFieldCity(), regionCache));
+//        demo.setFieldRegionName(regionService.getNameByCode(demo.getFieldRegion(), regionCache));
+//
+//        // 根据数据字典表将值转换成文本
+//        String fieldSelectText = dataDictionaryService.getForString("education", demo.getFieldSelect(), dataDictCache);
+//        demo.setFieldSelectText(fieldSelectText);
     }
 }

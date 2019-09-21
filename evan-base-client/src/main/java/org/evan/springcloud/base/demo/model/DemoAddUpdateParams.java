@@ -11,6 +11,8 @@ import java.util.Date;
  */
 @Data
 public class DemoAddUpdateParams {
+    private Long id;
+
     private Integer status;
 
     private Date fieldDate;

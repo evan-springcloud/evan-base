@@ -15,7 +15,6 @@ import org.springframework.context.annotation.ComponentScan;
         //"org.evanframework.datadict"
         //"org.evanframework.datadict.service"
         "org.evan.springcloud.base"
-        , "com.xudong.im.cache"
 })
 
 public class ApplicationTestBeansConfig {

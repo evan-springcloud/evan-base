@@ -1,6 +1,6 @@
 package org.evan.springcloud.base.demo.model;
 
-import org.springframework.beans.BeanUtils;
+import org.evan.springcloud.base.utils.BeanUtil;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,13 +11,19 @@ import org.springframework.stereotype.Component;
 public class DemoFactory {
     public Demo create(DemoAddUpdateParams demoAddUpdateParams) {
         Demo demo = new Demo();
-        BeanUtils.copyProperties(demoAddUpdateParams, demo);
+        BeanUtil.quickCopy(demoAddUpdateParams, demo);
+        return demo;
+    }
+
+    public Demo create(long demoId, DemoAddUpdateParams demoAddUpdateParams) {
+        Demo demo = create(demoAddUpdateParams);
+        demo.setId(demoId);
         return demo;
     }
 
     public Demo create(DemoModel demoModel) {
         Demo demo = new Demo();
-        BeanUtils.copyProperties(demoModel, demo);
+        BeanUtil.quickCopy(demoModel, demo);
         return demo;
     }
 }

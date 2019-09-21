@@ -19,11 +19,11 @@ public class DemoJdbcTest extends MySQLTestCaseSupport {
     private DemoJdbc demoJdbc;
 
     /**
-     * Method: checkFieldText(Long id, String fieldText)
+     * Method: notExists(Long id, String fieldText)
      */
     @Test
     public void testCheckFieldText() {
-         boolean result = demoJdbc.checkFieldText(null,"aa");
+         boolean result = demoJdbc.notExists(null,"aa");
 
         LOGGER.info(">>>> testCheckFieldText, result is [{}]", result);
     }

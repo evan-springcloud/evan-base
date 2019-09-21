@@ -1,9 +1,12 @@
 package test.evan.springcloud.base.demo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.exception.DataNotFindException;
+import org.evan.libraries.model.result.OperateResult;
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
+import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +23,29 @@ import java.util.List;
  * @version 1.0
  * @since <pre>Sep 21, 2019</pre>
  */
+@Slf4j
 public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
 
     @Autowired
     private DemoApplicationService demoService;
 
     @Test
-    @Rollback(false)
+    //@Rollback(false)
     public void testAdd() {
         DemoAddUpdateParams demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
-        demoService.add(demoAddUpdateParams);
+        OperateResult<Demo> result = demoService.add(demoAddUpdateParams);
+
+        log.info(">>>> testAdd: "+ result);
     }
 
     @Test
-    @Rollback(false)
+    //@Rollback(false)
     public void testUpdate() throws DataNotFindException {
         DemoAddUpdateParams demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
-
         long demoId = RandomDataUtil.randomInt(50);
+        OperateResult result = demoService.update(demoAddUpdateParams);
 
-        demoService.update(demoId, demoAddUpdateParams);
+        log.info(">>>> testUpdate: "+ result);
     }
 
     /**
@@ -49,6 +55,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     public void testRemove() {
         long demoId = RandomDataUtil.randomInt(50);
         demoService.remove(demoId);
+        //log.info(">>>> testRemove: "+ result);
     }
 
     /**
@@ -57,13 +64,14 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     @Test
     public void testRemoveBatch() {
         List<Long> demoIds = new ArrayList<>();
-        int count = RandomDataUtil.randomInt(10);
+        int count = RandomDataUtil.randomInt(3);
 
         for (int i = 0; i < count; i++) {
             demoIds.add(RandomDataUtil.randomLong(10 * (i + 1)));
         }
 
         demoService.removeBatch(demoIds.toArray(new Long[]{}));
+        //log.info(">>>> testRemoveBatch: "+ result);
     }
 
     /**
@@ -73,7 +81,8 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     public void testUpdateStatus() {
         long demoId = RandomDataUtil.randomInt(50);
         PublishStatusEnum newStatus = demoId % 2 == 0 ? PublishStatusEnum.PUBLISHED : PublishStatusEnum.NO_PUBLISH;
-        demoService.updateStatus(demoId, newStatus);
+        OperateResult result = demoService.updateStatus(demoId, newStatus);
+        log.info(">>>> testUpdateStatus: "+ result);
     }
 
     /**
@@ -82,7 +91,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     @Test
     public void testUpdateStatusBatch() {
         List<Long> demoIds = new ArrayList<>();
-        int count = RandomDataUtil.randomInt(10);
+        int count = RandomDataUtil.randomInt(20);
 
         for (int i = 0; i < count; i++) {
             demoIds.add(RandomDataUtil.randomLong(10 * (i + 1)));
@@ -90,6 +99,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
         PublishStatusEnum newStatus = count % 2 == 0 ? PublishStatusEnum.PUBLISHED : PublishStatusEnum.NO_PUBLISH;
 
         demoService.updateStatusBatch(demoIds.toArray(new Long[]{}), newStatus);
+        //log.info(">>>> testUpdateStatusBatch: "+ result);
     }
 
 } 

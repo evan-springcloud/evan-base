@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 示例
  */
-public class DemoDO implements Serializable {
+public class DemoModel implements Serializable {
 
     private static final long serialVersionUID = 13792681968342L;
 
@@ -49,10 +49,10 @@ public class DemoDO implements Serializable {
 
     private String fieldHtmleditorCut;
 
-    public DemoDO() {
+    public DemoModel() {
     }
 
-    public DemoDO(Long id) {
+    public DemoModel(Long id) {
         this.id = id;
     }
 

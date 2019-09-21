@@ -56,7 +56,8 @@ public class DemoApplicationService {
 
         DemoModel demoOld = demoMapper.load(demoId);
         if (demoOld == null) {
-            result.setCode(OperateCommonResultType.DATA_NOT_FIND); //通过返回代码告知调用者
+            //通过返回代码告知调用者
+            result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要修改的Demo不存在或已删除,id[" + demoId + "]");
         } else {
             Demo demo = demoFactory.create(demoId, demoAddUpdateParams);
             demoMapper.update(demo);
@@ -75,7 +76,7 @@ public class DemoApplicationService {
     public void remove(long demoId) {
         DemoModel demo = demoMapper.load(demoId);
         if (demo == null) {
-            throw new DataNotFindException(); //通过抛异常的方式告知调用者
+            throw new DataNotFindException("需要删除的Demo不存在或已删除,id[" + demoId + "]"); //通过抛异常的方式告知调用者
         } else {
             demoMapper.delete(demoId);
         }
@@ -109,7 +110,7 @@ public class DemoApplicationService {
         OperateResult result = OperateResult.create();
         DemoModel demo = demoMapper.load(demoId);
         if (demo == null) {
-            result.setCode(OperateCommonResultType.DATA_NOT_FIND);
+            result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要变更状态的Demo不存在或已删除,id[" + demoId + "]");
         } else {
             updateStatusInner(demoId, newStatus);
         }

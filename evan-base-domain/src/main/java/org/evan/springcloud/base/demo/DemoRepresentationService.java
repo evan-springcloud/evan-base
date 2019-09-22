@@ -49,7 +49,7 @@ public class DemoRepresentationService {
 //            }
 //        }
 
-        PageResult<DemoRepresentation> pageResult = PageResult.create(demoQuery);
+        PageResult<DemoRepresentation> pageResult = new PageResult<>(demoQuery);
 
         if (demoQuery.getPageSize() == 0) {
             demoQuery.setPageSize(DemoQuery.DEFAULT_PAGE_SIZE);

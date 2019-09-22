@@ -1,6 +1,6 @@
 package org.evan.springcloud.base.exceptions;
 
-import org.evan.libraries.rest.exception.GlobalExceptionHandler;
+import org.evan.libraries.web.exception.GlobalExceptionHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 /**

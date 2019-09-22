@@ -16,7 +16,7 @@
         <dependency>
             <groupId>org.evan.springcloud</groupId>
             <artifactId>evan-base-client</artifactId>
-            <version>1.0</version>
+            <version>${base-service-client.version}</version>
         </dependency>
 
         <dependency>
@@ -32,21 +32,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.evan.libraries</groupId>
+            <artifactId>evan-libraries-restclient</artifactId>
+            <version>${evan-libraries.version}</version>
         </dependency>
 
         <dependency>
@@ -55,6 +43,29 @@
             <version>1.7.26</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+
+        <!-- 数据源-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
         <!-- mybatis分页 -->
         <!--        <dependency>-->
         <!--            <groupId>com.github.pagehelper</groupId>-->
@@ -68,12 +79,6 @@
             <version>8.0.16</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- 数据源-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.19</version>
-        </dependency>
 
         <dependency>
             <groupId>com.github.dozermapper</groupId>
@@ -82,15 +87,22 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.evan.springcloud</groupId>
+            <artifactId>evan-service-config-core</artifactId>
+            <version>${evan-services-core.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

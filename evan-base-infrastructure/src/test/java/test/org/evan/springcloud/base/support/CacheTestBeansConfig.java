@@ -13,8 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
         //"org.evanframework.datadict"
         //"org.evanframework.datadict.service"
-        "com.xudong.im.config.cache"
-        , "com.xudong.im.cache"
 })
 public class CacheTestBeansConfig {
 

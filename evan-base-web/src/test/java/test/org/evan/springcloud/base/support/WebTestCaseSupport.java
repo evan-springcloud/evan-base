@@ -1,60 +1,63 @@
 package test.org.evan.springcloud.base.support;
 
-import com.github.dozermapper.core.DozerBeanMapper;
-import com.github.dozermapper.core.DozerBeanMapperBuilder;
-import com.github.dozermapper.core.Mapper;
+import lombok.extern.slf4j.Slf4j;
+import org.evan.libraries.web.client.TokenClientHttpRequestInterceptor;
+import org.evan.libraries.web.session.LoginAccountContext;
+import org.evan.springcloud.core.oauth.LoginUser;
+import org.evan.springcloud.core.oauth.LoginUserSession;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * Created by evan.shen on 2017/3/16.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {
         WebTestBeansConfig.class,
 }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Slf4j
 public class WebTestCaseSupport implements WebMvcConfigurer {
-
     protected RestTemplate restTemplate;
 
-    protected  Mapper dozerBeanMapper = DozerBeanMapperBuilder.buildDefault();
+    @Autowired
+    private TokenClientHttpRequestInterceptor tokenClientHttpRequestInterceptor;
 
-//    @Autowired
-//    private TokenClientHttpRequestInterceptor tokenClientHttpRequestInterceptor;
-//
-//    @Autowired
-//    private UserAgentSession userAgentSession;
+    @Autowired
+    private LoginUserSession loginUserSession;
 
     @Value("${local.server.port}")
     private int port;
 
     @Before
     public void init() {
-//        UserAgent userAgent = new UserAgent();
-//        userAgent.setId(-1L);
-//        userAgent.setRemoteAddr("127.0.0.1");
-//        //userAgent.setRemoteAddr("127.2.3.1");
-//        userAgent.setUserName("测试管理员");
-//        userAgent.setAccount("mizhi_admin");
-//        userAgent.setOrgId(212);
-//        userAgent.setUserType(UserTypeEnum.SUPPLIER.getValue());
-//
+        LoginUser LoginUser = new LoginUser();
+        LoginUser.setId(-1L);
+        LoginUser.setRemoteAddr("127.0.0.1");
+        //LoginUser.setRemoteAddr("127.2.3.1");
+        LoginUser.setUserName("张三");
+        LoginUser.setAccount("15600002222");
+
 //        Set<String> permissions = new HashSet<>();
 //        permissions.add(FunctionId.CONTRACT_CONFIRM);
-//        userAgent.setPermissions(permissions);
-//
-//        userAgentSession.save(userAgent);
-//        UserAgentContext.put(userAgent);
+//        LoginUser.setPermissions(permissions);
+
+        loginUserSession.save(LoginUser);
+        LoginAccountContext.put(LoginUser);
 //
         restTemplate = new RestTemplate();
-//        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
-////        interceptors.add(tokenClientHttpRequestInterceptor);
-////        restTemplate.setInterceptors(interceptors);
+        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        interceptors.add(tokenClientHttpRequestInterceptor);
+        restTemplate.setInterceptors(interceptors);
+
+        log.info("Rest Test Init,loginUser is [{}]", LoginUser);
     }
 
     protected String getApiUri() {

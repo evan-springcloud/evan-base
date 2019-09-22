@@ -1,19 +1,19 @@
 spring:
-  profiles:
-    active: 8031
+#  profiles:
+#    active: 8031
   application:
     name: evan-base
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: evan-config
-      #profile: dev-local
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/,http://127.0.0.1:8003/eureka/
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: evan-config
+#      #profile: dev-local
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/,http://127.0.0.1:8003/eureka/
 
 
 #---

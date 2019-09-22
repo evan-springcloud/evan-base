@@ -6,12 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * 网关
+ *
  *
  * @author shenwei
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {
+        "org.evan.springcloud.core.config",
+        "org.evan.springcloud.core.oauth",
         "org.evan.springcloud.base",
 })
 public class BaseApplication {

@@ -10,7 +10,6 @@ import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import test.evan.springcloud.base.support.ApplicationTestCaseSupport;
 
 import java.util.ArrayList;

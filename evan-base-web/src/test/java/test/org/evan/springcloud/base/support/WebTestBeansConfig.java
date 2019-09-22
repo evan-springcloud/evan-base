@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
+        "org.evan.springcloud.core.config",
+        "org.evan.springcloud.core.oauth",
         "org.evan.springcloud.base"
 })
 public class WebTestBeansConfig {

@@ -20,6 +20,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.evan.springcloud</groupId>
+            <artifactId>evan-service-core-web</artifactId>
+            <version>${evan-services-core.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.evan.libraries</groupId>
             <artifactId>evan-libraries-web</artifactId>
             <version>${evan-libraries.version}</version>
@@ -33,10 +39,10 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
@@ -57,5 +63,16 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- spring-boot-maven-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

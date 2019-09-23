@@ -7,11 +7,11 @@ import lombok.Data;
  * @author Evan.Shen
  * @since 2019-09-20
  */
-@ApiModel("示例")
+@ApiModel("Demo输出对象")
 @Data
-public class DemoRepresentation extends DemoModel {
+public class DemoVO extends DemoPO {
     @Override
     public String toString() {
-        return "DemoRepresentation{} " + super.toString();
+        return "DemoVO{} " + super.toString();
     }
 }

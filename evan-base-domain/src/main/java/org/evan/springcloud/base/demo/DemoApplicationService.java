@@ -6,9 +6,9 @@ import org.evan.libraries.model.result.OperateCommonResultType;
 import org.evan.libraries.model.result.OperateResult;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
 import org.evan.springcloud.base.demo.model.DemoFactory;
-import org.evan.springcloud.base.demo.model.DemoModel;
+import org.evan.springcloud.base.demo.model.DemoPO;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class DemoApplicationService {
 //    private DataDictionaryService dataDictionaryService;
 
     @Transactional
-    public OperateResult<Demo> add(DemoAddUpdateParams demoAddUpdateParams) {
+    public OperateResult<Demo> add(DemoAddUpdateDTO demoAddUpdateParams) {
         OperateResult result = OperateResult.create();
         // 验证
         //BeanValidators.validateWithException(validator, demoAddUpdateParams);
@@ -49,12 +49,12 @@ public class DemoApplicationService {
     }
 
     @Transactional
-    public OperateResult update(DemoAddUpdateParams demoAddUpdateParams) {
+    public OperateResult update(DemoAddUpdateDTO demoAddUpdateParams) {
         OperateResult result = OperateResult.create();
 
         Long demoId = demoAddUpdateParams.getId();
 
-        DemoModel demoOld = demoMapper.load(demoId);
+        DemoPO demoOld = demoMapper.load(demoId);
         if (demoOld == null) {
             //通过返回代码告知调用者
             result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要修改的Demo不存在或已删除,id[" + demoId + "]");
@@ -74,7 +74,7 @@ public class DemoApplicationService {
      */
     @Transactional
     public void remove(long demoId) {
-        DemoModel demo = demoMapper.load(demoId);
+        DemoPO demo = demoMapper.load(demoId);
         if (demo == null) {
             throw new DataNotFindException("需要删除的Demo不存在或已删除,id[" + demoId + "]"); //通过抛异常的方式告知调用者
         } else {
@@ -108,7 +108,7 @@ public class DemoApplicationService {
     @Transactional
     public OperateResult updateStatus(long demoId, PublishStatusEnum newStatus) {
         OperateResult result = OperateResult.create();
-        DemoModel demo = demoMapper.load(demoId);
+        DemoPO demo = demoMapper.load(demoId);
         if (demo == null) {
             result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要变更状态的Demo不存在或已删除,id[" + demoId + "]");
         } else {

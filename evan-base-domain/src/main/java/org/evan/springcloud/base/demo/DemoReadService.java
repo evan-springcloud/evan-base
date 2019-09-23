@@ -2,9 +2,9 @@ package org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.PageResult;
-import org.evan.springcloud.base.demo.model.DemoModel;
-import org.evan.springcloud.base.demo.model.DemoQuery;
-import org.evan.springcloud.base.demo.model.DemoRepresentation;
+import org.evan.springcloud.base.demo.model.DemoPO;
+import org.evan.springcloud.base.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.demo.model.DemoVO;
 import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.evan.springcloud.base.utils.BeanUtil;
@@ -24,7 +24,7 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class DemoRepresentationService {
+public class DemoReadService {
 
     @Autowired
     private DemoJdbc demoDao;
@@ -32,7 +32,7 @@ public class DemoRepresentationService {
     @Autowired
     private DemoMapper demoMapper;
 
-    public PageResult<DemoRepresentation> query(DemoQuery demoQuery) {
+    public PageResult<DemoVO> query(DemoQueryDTO demoQuery) {
         Assert.notNull(demoQuery, "Not find query param [DemoQuery]");
 
         // 如果排序编号(见DemoQuery.SortCode)不为空，而排序表达式为空，则需要将排序代码转换成排序表达式
@@ -49,10 +49,10 @@ public class DemoRepresentationService {
 //            }
 //        }
 
-        PageResult<DemoRepresentation> pageResult = new PageResult<>(demoQuery);
+        PageResult<DemoVO> pageResult = new PageResult<>(demoQuery);
 
         if (demoQuery.getPageSize() == 0) {
-            demoQuery.setPageSize(DemoQuery.DEFAULT_PAGE_SIZE);
+            demoQuery.setPageSize(DemoQueryDTO.DEFAULT_PAGE_SIZE);
         }
 
         //demoQuery.setIncludeDeleted(true);
@@ -66,44 +66,44 @@ public class DemoRepresentationService {
 //        }
 
         if (recordCount > 0) {
-            List<DemoModel> demos = demoMapper.queryList(demoQuery);
-            List<DemoRepresentation> demoRepresentations = convertRepresentation(demos);
+            List<DemoPO> demos = demoMapper.queryList(demoQuery);
+            List<DemoVO> demoVOs = convertRepresentation(demos);
 
-            pageResult.setData(demoRepresentations);
+            pageResult.setData(demoVOs);
         }
 
         return pageResult;
     }
 
-    private List<DemoRepresentation> convertRepresentation(List<DemoModel> demos) {
+    private List<DemoVO> convertRepresentation(List<DemoPO> demos) {
         int recordCountOnCurrentPage = demos.size();
-        List<DemoRepresentation> demoRepresentations = new ArrayList<>(recordCountOnCurrentPage);
+        List<DemoVO> demoVOs = new ArrayList<>(recordCountOnCurrentPage);
 
         // 将列表中每条数据中的值属性转换成用于显示文本
         // 循环的时候缓存结果，遇到相同的数据，从缓存中取出，缓存new的时候就分配大小，尽量不要出现扩容的情况
         Map<String, String> dataDictCache = new HashMap<>(recordCountOnCurrentPage);
         Map<String, String> regionCache = new HashMap<>(recordCountOnCurrentPage * 2);
-        for (DemoModel o : demos) {
-            DemoRepresentation demoRepresentation = new DemoRepresentation();
+        for (DemoPO o : demos) {
+            DemoVO demoVO = new DemoVO();
 
-            BeanUtil.quickCopy(o, demoRepresentation);
-            convertValueToText(demoRepresentation, dataDictCache, regionCache);
+            BeanUtil.quickCopy(o, demoVO);
+            convertValueToText(demoVO, dataDictCache, regionCache);
 
-            demoRepresentations.add(demoRepresentation);
+            demoVOs.add(demoVO);
         }
 
-        return demoRepresentations;
+        return demoVOs;
     }
 
-    public DemoRepresentation getById(long id) {
-        DemoModel demo = demoMapper.load(id);// 取demo
-        DemoRepresentation demoRepresentation = new DemoRepresentation();
+    public DemoVO getById(long id) {
+        DemoPO demo = demoMapper.load(id);// 取demo
+        DemoVO demoVO = new DemoVO();
 
         if (demo != null) {
-            BeanUtil.quickCopy(demo, demoRepresentation);
-            convertValueToText(demoRepresentation, null, null);
+            BeanUtil.quickCopy(demo, demoVO);
+            convertValueToText(demoVO, null, null);
         }
-        return demoRepresentation;
+        return demoVO;
     }
 
     /**
@@ -114,17 +114,17 @@ public class DemoRepresentationService {
      * author: <a href="mailto:shenw@hundsun.com">shenw</a><br>
      * create at: 2014年4月16日上午2:03:44
      */
-    public List<DemoRepresentation> getByIds(Long[] demoIds) {
-        DemoQuery demoQuery = new DemoQuery();
+    public List<DemoVO> getByIds(Long[] demoIds) {
+        DemoQueryDTO demoQuery = new DemoQueryDTO();
         demoQuery.setIdArray(demoIds);
 //        demoQuery.setColumns(DemoColumns.ID.getColumn(), DemoColumns.FIELD_TEXT.getColumn(),
 //                DemoColumns.STATUS.getColumn());
         demoQuery.setSortByDefault(false);
         demoQuery.setIncludeDeleted(true);
 
-        List<DemoModel> demos = demoMapper.queryList(demoQuery);
-        List<DemoRepresentation> demoRepresentations = convertRepresentation(demos);
-        return demoRepresentations;
+        List<DemoPO> demos = demoMapper.queryList(demoQuery);
+        List<DemoVO> demoVOs = convertRepresentation(demos);
+        return demoVOs;
     }
 
 
@@ -132,7 +132,7 @@ public class DemoRepresentationService {
         return demoDao.notExists(id, fieldText);
     }
 
-    private void convertValueToText(DemoRepresentation demoRepresentation, Map<String, String> dataDictCache, Map<String, String> regionCache) {
+    private void convertValueToText(DemoVO demoVO, Map<String, String> dataDictCache, Map<String, String> regionCache) {
 //        // 转化地区
 //        demo.setFieldProvinceName(regionService.getNameByCode(demo.getFieldProvince(), regionCache));
 //        demo.setFieldCityName(regionService.getNameByCode(demo.getFieldCity(), regionCache));

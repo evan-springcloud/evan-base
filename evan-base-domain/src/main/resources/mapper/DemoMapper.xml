@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.evan.springcloud.base.demo.repository.DemoMapper">
-    <resultMap id="demoMap" type="demoModel">
+    <resultMap id="demoMap" type="demoPO">
         <id column="ID" property="id"/>
         <result column="FIELD_REGION" property="fieldRegion"/>
         <result column="IMAGE_PATH" property="imagePath"/>
@@ -33,7 +33,7 @@
 <!--        </collection>-->
     </resultMap>
 
-    <insert id="insert" parameterType="demoModel" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="demoPO" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="id" order="BEFORE" resultType="long" databaseId="oracle">
             select
             SEQ_demo.nextval from dual
@@ -88,7 +88,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="demoModel">
+    <update id="update" parameterType="demoPO">
         update demo
         <set>
             <if test="fieldRegion != null">FIELD_REGION=#{fieldRegion,jdbcType=VARCHAR},</if>
@@ -242,7 +242,7 @@
         </choose>
     </sql>
 
-    <select id="queryList" parameterType="demoQuery" resultMap="demoMap">
+    <select id="queryList" parameterType="demoQueryDTO" resultMap="demoMap">
 
         select d.ID
         <choose>
@@ -285,12 +285,12 @@
         <if test="pageSize>0">limit ${startRow},${pageSize}</if>
     </select>
 
-    <select id="queryCount" parameterType="demoQuery" resultType="int">
+    <select id="queryCount" parameterType="demoQueryDTO" resultType="int">
         select count(1)
         <include refid="queryCommonSql"/>
     </select>
 
-    <update id="updateStatus" parameterType="demoModel">
+    <update id="updateStatus" parameterType="demoPO">
         update demo set status=#{status} where ID=#{id}
     </update>
 

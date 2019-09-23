@@ -1,5 +1,8 @@
 package org.evan.springcloud.base.demo.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -7,52 +10,71 @@ import java.util.Date;
 /**
  * 示例
  */
-public class DemoModel implements Serializable {
+@ApiModel("Demo")
+public class DemoPO implements Serializable {
 
     private static final long serialVersionUID = 13792681968342L;
 
     private Long id;
 
+    @ApiModelProperty(value = "创建时间")
     private Date gmtCreate;
 
+    @ApiModelProperty(value = "最后修改时间")
     private Date gmtModify;
 
+    @ApiModelProperty(value = "状态  1：未发布，2：已发布")
     private Integer status;
 
+    @ApiModelProperty(value = "日期")
     private Date fieldDate;
 
+    @ApiModelProperty(value = "日期时间")
     private Date fieldDatetime;
 
+    @ApiModelProperty(value = "下拉")
     private String fieldSelect;
 
+    @ApiModelProperty(value = "单选")
     private String fieldRadio;
 
+    @ApiModelProperty(value = "多选")
     private String fieldCheckbox;
 
+    @ApiModelProperty(value = "数字")
     private BigDecimal fieldNumber;
 
+    @ApiModelProperty(value = "文本")
     private String fieldText;
 
+    @ApiModelProperty(value = "省份")
     private String fieldProvince;
 
+    @ApiModelProperty(value = "城市")
     private String fieldCity;
 
+    @ApiModelProperty(value = "区县")
     private String fieldRegion;
 
+    @ApiModelProperty(value = "列表图片路径")
     private String imagePath;
 
+    @ApiModelProperty(value = "其他图片路径")
     private String imagePathList;
 
+    @ApiModelProperty(value = "多行文本")
     private String fieldTextarea;
 
+    @ApiModelProperty(value = "Html文本编辑")
     private String fieldHtmleditor;
 
+    @ApiModelProperty(value = "Html文本编辑截取")
     private String fieldHtmleditorCut;
 
-    public DemoModel() {
+    public DemoPO() {
     }
 
-    public DemoModel(Long id) {
+    public DemoPO(Long id) {
         this.id = id;
     }
 

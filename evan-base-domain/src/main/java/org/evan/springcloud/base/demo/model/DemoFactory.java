@@ -9,21 +9,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DemoFactory {
-    public Demo create(DemoAddUpdateParams demoAddUpdateParams) {
+    public Demo create(DemoAddUpdateDTO demoAddUpdateParams) {
         Demo demo = new Demo();
         BeanUtil.quickCopy(demoAddUpdateParams, demo);
         return demo;
     }
 
-    public Demo create(long demoId, DemoAddUpdateParams demoAddUpdateParams) {
+    public Demo create(long demoId, DemoAddUpdateDTO demoAddUpdateParams) {
         Demo demo = create(demoAddUpdateParams);
         demo.setId(demoId);
         return demo;
     }
 
-    public Demo create(DemoModel demoModel) {
+    public Demo create(DemoPO demoPO) {
         Demo demo = new Demo();
-        BeanUtil.quickCopy(demoModel, demo);
+        BeanUtil.quickCopy(demoPO, demo);
         return demo;
     }
 }

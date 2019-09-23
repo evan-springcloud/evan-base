@@ -7,15 +7,15 @@ import org.evan.springcloud.base.utils.BeanUtil;
  * @author Evan.Shen
  * @since 2019-09-20
  */
-public class Demo extends DemoModel {
-    public Demo newDemo(DemoAddUpdateParams demoAddUpdateParams) {
+public class Demo extends DemoPO {
+    public Demo newDemo(DemoAddUpdateDTO demoAddUpdateParams) {
         Demo demo = new Demo();
         BeanUtil.quickCopy(demoAddUpdateParams, demo);
         demo.setStatus(PublishStatusEnum.PUBLISHED.getValue());
         return demo;
     }
 
-    public Demo updateDemo(long id, DemoAddUpdateParams demoAddUpdateParams) {
+    public Demo updateDemo(long id, DemoAddUpdateDTO demoAddUpdateParams) {
         Demo demo = new Demo();
 
         BeanUtil.quickCopy(demoAddUpdateParams, demo);

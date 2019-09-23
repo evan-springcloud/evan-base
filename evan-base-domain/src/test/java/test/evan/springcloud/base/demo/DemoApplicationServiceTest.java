@@ -7,7 +7,7 @@ import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import test.evan.springcloud.base.support.ApplicationTestCaseSupport;
@@ -31,7 +31,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     @Test
     //@Rollback(false)
     public void testAdd() {
-        DemoAddUpdateParams demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
+        DemoAddUpdateDTO demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
         OperateResult<Demo> result = demoService.add(demoAddUpdateParams);
 
         log.info(">>>> testAdd: "+ result);
@@ -40,7 +40,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
     @Test
     //@Rollback(false)
     public void testUpdate() throws DataNotFindException {
-        DemoAddUpdateParams demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
+        DemoAddUpdateDTO demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
         long demoId = RandomDataUtil.randomInt(50);
         OperateResult result = demoService.update(demoAddUpdateParams);
 

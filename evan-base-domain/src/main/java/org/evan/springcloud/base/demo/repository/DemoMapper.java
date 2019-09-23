@@ -1,8 +1,8 @@
 package org.evan.springcloud.base.demo.repository;
 
 import org.apache.ibatis.annotations.Param;
-import org.evan.springcloud.base.demo.model.DemoModel;
-import org.evan.springcloud.base.demo.model.DemoQuery;
+import org.evan.springcloud.base.demo.model.DemoPO;
+import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 
 
 import java.io.Serializable;
@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface DemoMapper {
     /***/
-    DemoModel load(Long id);
+    DemoPO load(Long id);
 
     /***/
-    void insert(DemoModel demo);
+    void insert(DemoPO demo);
 
     /***/
-    void update(DemoModel demo);
+    void update(DemoPO demo);
 
     /***/
     void updateStatus(@Param("id") Long id, @Param("status") Serializable status);
@@ -25,8 +25,8 @@ public interface DemoMapper {
     void delete(Long id);
 
     /***/
-    List<DemoModel> queryList(DemoQuery demoQuery);
+    List<DemoPO> queryList(DemoQueryDTO demoQuery);
 
     /***/
-    int queryCount(DemoQuery demoQuery);
+    int queryCount(DemoQueryDTO demoQuery);
 }

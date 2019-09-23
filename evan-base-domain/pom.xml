@@ -13,11 +13,11 @@
     <artifactId>evan-base-domain</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.evan.springcloud</groupId>
-            <artifactId>evan-user-service-client</artifactId>
-            <version>${user-service-client.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.evan.springcloud</groupId>-->
+<!--            <artifactId>evan-user-service-client</artifactId>-->
+<!--            <version>${user-service-client.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.evan.springcloud</groupId>

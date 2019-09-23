@@ -5,8 +5,8 @@ import org.evan.libraries.model.result.RestResponse;
 import org.evan.libraries.utils.DateUtil;
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
-import org.evan.springcloud.base.demo.model.DemoRepresentation;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
+import org.evan.springcloud.base.demo.model.DemoVO;
 import org.evan.springcloud.base.utils.BeanUtil;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,10 +23,10 @@ import java.util.Map;
 @Slf4j
 public class DemoControllerTest extends WebTestCaseSupport {
 
-    private ParameterizedTypeReference<RestResponse<DemoRepresentation>> responseTypeForOne = new ParameterizedTypeReference<RestResponse<DemoRepresentation>>() {
+    private ParameterizedTypeReference<RestResponse<DemoVO>> responseTypeForOne = new ParameterizedTypeReference<RestResponse<DemoVO>>() {
     };
 
-    private ParameterizedTypeReference<RestResponse<List<DemoRepresentation>>> responseTypeForList = new ParameterizedTypeReference<RestResponse<List<DemoRepresentation>>>() {
+    private ParameterizedTypeReference<RestResponse<List<DemoVO>>> responseTypeForList = new ParameterizedTypeReference<RestResponse<List<DemoVO>>>() {
     };
 
     @Test
@@ -41,7 +41,7 @@ public class DemoControllerTest extends WebTestCaseSupport {
         ResponseEntity<String> responseEntity1 = restTemplate.getForEntity(url, String.class, parames);
         log.info("========>>testGetList 结果1：" + responseEntity1.getBody());
 
-        ResponseEntity<RestResponse<List<DemoRepresentation>>> responseEntity2 = restTemplate.exchange(url, HttpMethod.GET, null, responseTypeForList, parames);
+        ResponseEntity<RestResponse<List<DemoVO>>> responseEntity2 = restTemplate.exchange(url, HttpMethod.GET, null, responseTypeForList, parames);
         log.info("========>>testGetList 结果2：" + responseEntity2.getBody());
     }
 
@@ -52,14 +52,14 @@ public class DemoControllerTest extends WebTestCaseSupport {
         String response1 = restTemplate.getForObject(url, String.class, 107);
         log.info("========>>testLoad 结果：" + response1);
 
-        ResponseEntity<RestResponse<DemoRepresentation>> responseEntity2 = restTemplate.exchange(url, HttpMethod.GET, null, responseTypeForOne, 107);
+        ResponseEntity<RestResponse<DemoVO>> responseEntity2 = restTemplate.exchange(url, HttpMethod.GET, null, responseTypeForOne, 107);
         log.info("========>>testLoad 结果：" + responseEntity2.getBody());
     }
 
     @Test
     public void testAdd() {
         String url = getFullApiUri("/demo/add");
-        DemoAddUpdateParams demo = DemoTestData.randomDemoAddUpdateParams();
+        DemoAddUpdateDTO demo = DemoTestData.randomDemoAddUpdateParams();
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -83,14 +83,14 @@ public class DemoControllerTest extends WebTestCaseSupport {
 
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(formData, httpHeaders);
 
-        ResponseEntity<RestResponse<DemoRepresentation>> responseEntity1 = restTemplate.exchange(url, HttpMethod.POST, requestEntity, responseTypeForOne);
+        ResponseEntity<RestResponse<DemoVO>> responseEntity1 = restTemplate.exchange(url, HttpMethod.POST, requestEntity, responseTypeForOne);
         log.info("========>>testAdd 结果：" + responseEntity1.getBody());
     }
 
     @Test
     public void testUpdate() {
         String url = getFullApiUri("/demo/update");
-        DemoAddUpdateParams demo = DemoTestData.randomDemoAddUpdateParams();
+        DemoAddUpdateDTO demo = DemoTestData.randomDemoAddUpdateParams();
         long demoId = RandomDataUtil.randomInt(50);
         demo.setId(demoId);
         RestResponse response = restTemplate.postForObject(url, demo, RestResponse.class);

@@ -1,6 +1,6 @@
 spring:
-#  profiles:
-#    active: 8031
+  profiles:
+    active: local
   application:
     name: evan-base
 #  cloud:

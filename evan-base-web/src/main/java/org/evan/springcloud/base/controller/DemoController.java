@@ -6,17 +6,18 @@ import org.evan.libraries.model.result.OperateResult;
 import org.evan.libraries.model.result.PageResult;
 import org.evan.libraries.model.result.RestResponse;
 import org.evan.springcloud.base.demo.DemoApplicationService;
-import org.evan.springcloud.base.demo.DemoRepresentationService;
+import org.evan.springcloud.base.demo.DemoReadService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
-import org.evan.springcloud.base.demo.model.DemoQuery;
-import org.evan.springcloud.base.demo.model.DemoRepresentation;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
+import org.evan.springcloud.base.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.demo.model.DemoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -28,14 +29,14 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("demo")
 @Slf4j
-@Api("Api示例")
+@Api(description = "Api示例")
 public class DemoController {
 
     @Autowired
     private DemoApplicationService demoApplicationService;
 
     @Autowired
-    private DemoRepresentationService demoRepresentationService;
+    private DemoReadService demoReadService;
 
 //    @Autowired
 //    private PubDataDictionaryManager pubDataDictionaryManager;
@@ -45,9 +46,9 @@ public class DemoController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping("list")
-    public RestResponse list(DemoQuery demoQuery) {
+    public RestResponse list(DemoQueryDTO demoQuery) {
         log.info("=====>>query: " + demoQuery);
-        PageResult<DemoRepresentation> page = demoRepresentationService.query(demoQuery);
+        PageResult<DemoVO> page = demoReadService.query(demoQuery);
         return RestResponse.create(page);
     }
 
@@ -57,18 +58,18 @@ public class DemoController {
 //    @CsrfValidate
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.ADD, objectIdParamKey = "id", objectIdFrom = OperationLogObjectIdFromEnum.RESULT, objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
 
-    public RestResponse<Demo> add(@ApiParam(value = "添加的对象", required = true) DemoAddUpdateParams demoAddUpdateParams) {
+    public RestResponse<Demo> add(DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
         OperateResult<Demo> result = demoApplicationService.add(demoAddUpdateParams);
         return RestResponse.create(result);
     }
 
     @ApiOperation(value = "添加-json", notes = "这是接口描述")
-    @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add2", consumes = MediaType.APPLICATION_JSON_VALUE)
     //@PostMapping(value = "add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 //    @CsrfValidate
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.ADD, objectIdParamKey = "id", objectIdFrom = OperationLogObjectIdFromEnum.RESULT, objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
-    public RestResponse<Demo> add2(@Valid @RequestBody @ApiParam(value = "添加的对象", required = true) DemoAddUpdateParams demoAddUpdateParams) {
+    public RestResponse<Demo> add2(@Valid @RequestBody @ApiParam(value = "添加的对象", required = true) DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
         OperateResult<Demo> result = demoApplicationService.add(demoAddUpdateParams);
         return RestResponse.create(result);
@@ -76,22 +77,22 @@ public class DemoController {
 
     @ApiOperation(value = "根据id获取单个-id在请求参数中")
     @GetMapping("load")
-    public RestResponse<DemoRepresentation> load(@RequestParam("id") @ApiParam(value = "Id", required = true) Long id) {
-        DemoRepresentation demo = demoRepresentationService.getById(id);
+    public RestResponse<DemoVO> load(@RequestParam("id") @ApiParam(value = "Id", required = true) Long id) {
+        DemoVO demo = demoReadService.getById(id);
         return RestResponse.create(demo);
     }
 
 //    @ApiOperation(value = "根据id获取单个-id在请求路径中")
 //    @GetMapping("{id}")
-//    public RestResponse<DemoRepresentation> load2(@PathVariable("id") @ApiParam(value = "Id", required = true) Long id) {
-//        DemoRepresentation demo = demoRepresentationService.getById(id);
+//    public RestResponse<DemoVO> load2(@PathVariable("id") @ApiParam(value = "Id", required = true) Long id) {
+//        DemoVO demo = demoReadService.getById(id);
 //        return RestResponse.create(demo);
 //    }
 
     @ApiOperation(value = "修改-formdata")
     @PostMapping(value = "update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.MODIFY, objectIdParamKey = "arg0", objectNameParamKey = "arg1.fieldText", template = "新数据：${arg1}")
-    public RestResponse update1(DemoAddUpdateParams demoAddUpdateParams) {
+    public RestResponse update1(DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
         OperateResult result = demoApplicationService.update(demoAddUpdateParams);
         return RestResponse.create(result);
@@ -100,7 +101,7 @@ public class DemoController {
     @ApiOperation(value = "修改-json")
     @PostMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.MODIFY, objectIdParamKey = "arg0.id", objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
-    public RestResponse update2(@RequestBody DemoAddUpdateParams demoAddUpdateParams) {
+    public RestResponse update2(@RequestBody DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
         OperateResult result = demoApplicationService.update(demoAddUpdateParams);
         return RestResponse.create(result);
@@ -186,9 +187,10 @@ public class DemoController {
     public RestResponse<Boolean> checkFieldText(
             @RequestParam(value = "id", required = false) @ApiParam(value = "id为空表示新增时校验，否则表示修改时校验") Long id,
             @RequestParam("fieldText") @ApiParam(value = "验证的文本", required = true) String fieldText) {
-        return RestResponse.create(demoRepresentationService.notExists(id, fieldText));
+        return RestResponse.create(demoReadService.notExists(id, fieldText));
     }
 
+    @ApiIgnore
     @GetMapping("testConfig/{configName}")
     public String testConfig(@PathVariable("configName") String configName) {
         return environment.getProperty(configName, "undefinded");

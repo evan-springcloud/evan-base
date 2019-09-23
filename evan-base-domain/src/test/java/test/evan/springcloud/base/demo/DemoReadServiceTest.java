@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.PageResult;
 import org.evan.libraries.utils.DateUtil;
 import org.evan.libraries.utils.RandomDataUtil;
-import org.evan.springcloud.base.demo.DemoRepresentationService;
-import org.evan.springcloud.base.demo.model.DemoQuery;
-import org.evan.springcloud.base.demo.model.DemoRepresentation;
+import org.evan.springcloud.base.demo.DemoReadService;
+import org.evan.springcloud.base.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.demo.model.DemoVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import test.evan.springcloud.base.support.ApplicationTestCaseSupport;
@@ -19,15 +19,15 @@ import java.util.List;
  * @since 2019-09-21
  */
 @Slf4j
-public class DemoRepresentationServiceTest extends ApplicationTestCaseSupport {
+public class DemoReadServiceTest extends ApplicationTestCaseSupport {
 
     @Autowired
-    private DemoRepresentationService demoRepresentationService;
+    private DemoReadService demoReadService;
 
 
     @Test
     public void testQuery() {
-        DemoQuery demoQuery = new DemoQuery();
+        DemoQueryDTO demoQuery = new DemoQueryDTO();
         demoQuery.setGmtCreateFrom(DateUtil.parse("2018-01-01"));
         demoQuery.setGmtCreateTo(DateUtil.parse("2019-12-31"));
 //        demoQuery.setStatusEnumArray(PublishStatusEnum.NO_PUBLISH, PublishStatusEnum.PUBLISHED);
@@ -38,7 +38,7 @@ public class DemoRepresentationServiceTest extends ApplicationTestCaseSupport {
 //                DemoColumns.GMT_MODIFY.getColumn()//
 //        );
 //        demoQuery.setJoinDemoChild1(true);
-        PageResult demos = demoRepresentationService.query(demoQuery);
+        PageResult demos = demoReadService.query(demoQuery);
 
         log.info(">>>> testQuery:" + demos.getRecordCount());
     }
@@ -47,8 +47,8 @@ public class DemoRepresentationServiceTest extends ApplicationTestCaseSupport {
     @Test
     public void testGetById() {
         long id = RandomDataUtil.randomLong(100);
-        DemoRepresentation demoRepresentation = demoRepresentationService.getById(id);
-        log.info(">>>> testGetById:" + demoRepresentation);
+        DemoVO demoVO = demoReadService.getById(id);
+        log.info(">>>> testGetById:" + demoVO);
     }
 
     @Test
@@ -60,15 +60,15 @@ public class DemoRepresentationServiceTest extends ApplicationTestCaseSupport {
             demoIds.add(RandomDataUtil.randomLong(10 * (i + 1)));
         }
 
-        List<DemoRepresentation> demoRepresentations = demoRepresentationService.getByIds(demoIds.toArray(new Long[]{}));
+        List<DemoVO> demoVOs = demoReadService.getByIds(demoIds.toArray(new Long[]{}));
 
-        log.info(">>>> testGetByIds:" + demoRepresentations);
+        log.info(">>>> testGetByIds:" + demoVOs);
     }
 
     @Test
     public void testNotExists() {
         long id = RandomDataUtil.randomLong(100);
-        boolean notExists = demoRepresentationService.notExists(id,"Txt");
+        boolean notExists = demoReadService.notExists(id,"Txt");
         log.info(">>>> testNotExists:" + notExists);
     }
 }

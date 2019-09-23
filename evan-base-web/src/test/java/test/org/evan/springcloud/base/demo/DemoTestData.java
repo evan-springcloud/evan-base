@@ -1,16 +1,16 @@
 package test.org.evan.springcloud.base.demo;
 
 import org.evan.libraries.utils.RandomDataUtil;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateParams;
-import org.evan.springcloud.base.demo.model.DemoModel;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
+import org.evan.springcloud.base.demo.model.DemoPO;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class DemoTestData {
-    public static DemoModel randomDemoModel() {
+    public static DemoPO randomDemoPO() {
 
-        DemoModel demo = new DemoModel();
+        DemoPO demo = new DemoPO();
 
         demo.setFieldText(randomTitle());
         demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));
@@ -33,9 +33,9 @@ public class DemoTestData {
         return demo;
     }
 
-    public static DemoAddUpdateParams randomDemoAddUpdateParams() {
+    public static DemoAddUpdateDTO randomDemoAddUpdateParams() {
 
-        DemoAddUpdateParams demo = new DemoAddUpdateParams();
+        DemoAddUpdateDTO demo = new DemoAddUpdateDTO();
 
         demo.setFieldText(randomTitle());
         demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));

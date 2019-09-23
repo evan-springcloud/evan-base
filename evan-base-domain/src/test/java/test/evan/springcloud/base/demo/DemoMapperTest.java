@@ -2,9 +2,9 @@ package test.evan.springcloud.base.demo;
 
 
 import test.evan.springcloud.base.support.MySQLTestCaseSupport;
-import org.evan.springcloud.base.demo.model.DemoModel;
+import org.evan.springcloud.base.demo.model.DemoPO;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
-import org.evan.springcloud.base.demo.model.DemoQuery;
+import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -19,18 +19,18 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 
     @Test
     public void testLoad() {
-        DemoModel demo = demoMapper.load(1L);
+        DemoPO demo = demoMapper.load(1L);
         LOGGER.info(">>>> test load:" + demo + "");
     }
 
     @Test
     @Rollback(false)
     public void testInsert() {
-        DemoModel demo = DemoTestData.randomDemoModel();
+        DemoPO demo = DemoTestData.randomDemoPO();
         demoMapper.insert(demo);
         LOGGER.info(">>>> test testInsert: id[{}]",demo.getId());
 
-        demo = DemoTestData.randomDemoModel();
+        demo = DemoTestData.randomDemoPO();
         //demo.setFieldCity("12345677889");
         demoMapper.insert(demo);
         LOGGER.info(">>>> test testInsert:" + demo);
@@ -39,7 +39,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     @Test
     @Rollback(false)
     public void testUpdate() {
-        DemoModel demo = new DemoModel(4823L);
+        DemoPO demo = new DemoPO(4823L);
         demo.setFieldText("BBB");
         demo.setFieldDatetime(new Date());
         demo.setFieldNumber(new BigDecimal("22121212.312121212"));
@@ -63,7 +63,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 
     @Test
     public void testQueryForList()  {
-        DemoQuery demoQuery = new DemoQuery();
+        DemoQueryDTO demoQuery = new DemoQueryDTO();
 //        demoQuery.setGmtCreateFrom(DateUtils.parse("2011-01-01"));
 //        demoQuery.setGmtCreateTo(DateUtils.parse("2013-12-31"));
 //        demoQuery.setStatusEnumArray(PublishStatusEnum.NO_PUBLISH, PublishStatusEnum.PUBLISHED);
@@ -74,26 +74,26 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //                DemoColumns.GMT_MODIFY.getColumn()//
 //        );
 //        demoQuery.setJoinDemoChild1(true);
-        List<DemoModel> demos = demoMapper.queryList(demoQuery);
+        List<DemoPO> demos = demoMapper.queryList(demoQuery);
 
         LOGGER.info(">>>> testQueryForList:" + demos.size());
     }
 
     @Test
     public void testQueryForCount() {
-        DemoQuery demoQuery = new DemoQuery();
+        DemoQueryDTO demoQuery = new DemoQueryDTO();
 
         demoQuery.setFieldText("1");
         //demoQuery.setPageSize(5);
 
-        List<DemoModel> demos = demoMapper.queryList(demoQuery);
+        List<DemoPO> demos = demoMapper.queryList(demoQuery);
 
         LOGGER.info(">>>> testQueryForCount:" + demos.size());
     }
 
     @Test
     public void testQueryForPage() {
-        DemoQuery demoQuery = new DemoQuery();
+        DemoQueryDTO demoQuery = new DemoQueryDTO();
 
         //demoQuery.setFieldText("1");
 //        demoQuery.setPageNo(2);
@@ -101,7 +101,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //        demoQuery.setJoinDemoChild1(true);
 
         int count = demoMapper.queryCount(demoQuery);
-        List<DemoModel> demos = demoMapper.queryList(demoQuery);
+        List<DemoPO> demos = demoMapper.queryList(demoQuery);
         //PageResult<Demo> pageResult = PageResult.create(demoQuery, demos, count);
 
         //log.info(pageResult.toString());

@@ -9,12 +9,12 @@ import org.springframework.context.annotation.ComponentScan;
  * @author evan.shen
  * @since 2017/7/16
  */
-@EnableAutoConfiguration(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
+@EnableAutoConfiguration
 @ComponentScan(basePackages = {
         //"org.evanframework.datadict"
         //"org.evanframework.datadict.service"
-        "com.xudong.im.config.cache"
-        , "com.xudong.im.cache"
+        "org.evan.springcloud.core.config.cache",
+        "org.evan.springcloud.base"
 })
 public class CacheTestBeansConfig {
 

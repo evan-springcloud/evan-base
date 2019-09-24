@@ -30,6 +30,10 @@ spring:
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
 
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml #映射文件所在路径
+  type-aliases-package:  org.evan.springcloud.**.model  #PO所在包
+
 logging:
   pattern:
     console: "%clr(%d{dd HH:mm:ss}){faint} %clr(%-5p) %clr([%15.15t]){faint} %clr(%-50logger{50}){cyan} %clr(:){faint} %m%n"

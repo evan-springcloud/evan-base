@@ -40,7 +40,7 @@
         </selectKey>
         insert into
         demo(
-        <if test="_databaseId == 'oracle'">ID,</if>
+<!--        <if test="_databaseId == 'oracle'">ID,</if>-->
         <trim prefix="" prefixOverrides=",">
             <if test="fieldRegion != null">,FIELD_REGION</if>
             <if test="imagePath != null">,IMAGE_PATH</if>
@@ -62,7 +62,7 @@
             <if test="fieldCity != null">,FIELD_CITY</if>
         </trim>
         )values(
-        <if test="_databaseId == 'oracle'">#{id},</if>
+<!--        <if test="_databaseId == 'oracle'">#{id},</if>-->
         <trim prefix="" prefixOverrides=",">
             <if test="fieldRegion != null">,#{fieldRegion,jdbcType=VARCHAR}</if>
             <if test="imagePath != null">,#{imagePath,jdbcType=VARCHAR}</if>
@@ -135,19 +135,21 @@
             <if test="fieldProvince != null and fieldProvince.trim() !=''">and d.FIELD_PROVINCE = #{fieldProvince}</if>
             <if test="fieldDatetimeFrom != null">and d.FIELD_DATETIME >= #{fieldDatetimeFrom}</if>
             <if test="fieldDatetimeTo != null">
-                <choose>
-                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{fieldDatetimeTo} + 1]]></when>
-                    <when test="_databaseId == 'mysql'">
-                        <![CDATA[and d.GMT_MODIFY < date_add( #{fieldDatetimeTo}, interval 1 day)]]></when>
-                </choose>
+                <![CDATA[and d.GMT_MODIFY < date_add( #{fieldDatetimeTo}, interval 1 day)]]>
+<!--<choose>-->
+<!--                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{fieldDatetimeTo} + 1]]></when>-->
+<!--                    <when test="_databaseId == 'mysql'">-->
+<!--                       </when>-->
+<!--                </choose>-->
             </if>
             <if test="gmtCreateFrom != null">and d.GMT_CREATE >= #{gmtCreateFrom}</if>
             <if test="gmtCreateTo != null">
-                <choose>
-                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{gmtCreateTo} + 1]]></when>
-                    <when test="_databaseId == 'mysql'">
-                        <![CDATA[and d.GMT_MODIFY < date_add( #{gmtCreateTo}, interval 1 day)]]></when>
-                </choose>
+                <![CDATA[and d.GMT_MODIFY < date_add( #{gmtCreateTo}, interval 1 day)]]>
+<!--<choose>-->
+<!--                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{gmtCreateTo} + 1]]></when>-->
+<!--                    <when test="_databaseId == 'mysql'">-->
+<!--                       </when>-->
+<!--                </choose>-->
             </if>
             <!--            <if test="fieldHtmleditorCut != null and fieldHtmleditorCut.trim() !=''">-->
             <!--                and d.FIELD_HTMLEDITOR_CUT like-->
@@ -177,30 +179,32 @@
             <if test="fieldSelect != null ">and d.FIELD_SELECT=#{fieldSelect}</if>
             <if test="gmtModifyFrom != null">and d.GMT_MODIFY >= #{gmtModifyFrom}</if>
             <if test="gmtModifyTo != null">
-                <choose>
-                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{gmtModifyTo} + 1]]></when>
-                    <when test="_databaseId == 'mysql'">
-                        <![CDATA[and d.GMT_MODIFY < date_add( #{gmtModifyTo}, interval 1 day)]]></when>
-                </choose>
+                <![CDATA[and d.GMT_MODIFY < date_add( #{gmtModifyTo}, interval 1 day)]]>
+<!--                <choose>-->
+<!--                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{gmtModifyTo} + 1]]></when>-->
+<!--                    <when test="_databaseId == 'mysql'">-->
+<!--                       /when>-->
+<!--                </choose>-->
             </if>
             <if test="fieldText != null and fieldText.trim() !=''">
-                and d.FIELD_TEXT like
-                <choose>
-                    <when test="_databaseId=='oracle'">
-                        '%' || #{fieldText} || '%'
-                    </when>
-                    <when test="_databaseId=='mysql'">
-                        CONCAT('%',#{fieldText},'%')
-                    </when>
-                </choose>
+                and d.FIELD_TEXT like CONCAT('%',#{fieldText},'%')
+<!--                <choose>-->
+<!--                    <when test="_databaseId=='oracle'">-->
+<!--                        '%' || #{fieldText} || '%'-->
+<!--                    </when>-->
+<!--                    <when test="_databaseId=='mysql'">-->
+<!--                        CONCAT('%',#{fieldText},'%')-->
+<!--                    </when>-->
+<!--                </choose>-->
             </if>
             <if test="fieldDateFrom != null">and d.FIELD_DATE >= #{fieldDateFrom}</if>
             <if test="fieldDateTo != null">
-                <choose>
-                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{fieldDateTo} + 1]]></when>
-                    <when test="_databaseId == 'mysql'">
-                        <![CDATA[and d.GMT_MODIFY < date_add( #{fieldDateTo}, interval 1 day)]]></when>
-                </choose>
+                <![CDATA[and d.GMT_MODIFY < date_add( #{fieldDateTo}, interval 1 day)]]>
+<!--                <choose>-->
+<!--                    <when test="_databaseId == 'oracle'"><![CDATA[and d.GMT_MODIFY < #{fieldDateTo} + 1]]></when>-->
+<!--                    <when test="_databaseId == 'mysql'">-->
+<!--                       </when>-->
+<!--                </choose>-->
             </if>
             <choose>
                 <when test="status != null">and d.STATUS = #{status}</when>

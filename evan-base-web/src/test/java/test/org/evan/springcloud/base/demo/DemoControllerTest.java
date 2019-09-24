@@ -2,6 +2,7 @@ package test.org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.RestResponse;
+import org.evan.libraries.utils.BeanUtil;
 import org.evan.libraries.utils.DateUtil;
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;

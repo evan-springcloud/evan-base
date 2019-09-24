@@ -11,7 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
-        "com.xudong.im.data.mongo"
+        "org.evan.springcloud.core.config.cache",
+        "org.evan.springcloud.base"
 })
 public class MongoDBTestBeansConfig {
 

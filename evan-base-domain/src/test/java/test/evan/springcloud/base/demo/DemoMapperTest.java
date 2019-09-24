@@ -1,13 +1,13 @@
 package test.evan.springcloud.base.demo;
 
 
-import test.evan.springcloud.base.support.MySQLTestCaseSupport;
 import org.evan.springcloud.base.demo.model.DemoPO;
-import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
+import test.evan.springcloud.base.support.MySQLTestCaseSupport;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,7 +28,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     public void testInsert() {
         DemoPO demo = DemoTestData.randomDemoPO();
         demoMapper.insert(demo);
-        LOGGER.info(">>>> test testInsert: id[{}]",demo.getId());
+        LOGGER.info(">>>> test testInsert: id[{}]", demo.getId());
 
         demo = DemoTestData.randomDemoPO();
         //demo.setFieldCity("12345677889");
@@ -62,7 +62,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     }
 
     @Test
-    public void testQueryForList()  {
+    public void testQueryForList() {
         DemoQueryDTO demoQuery = new DemoQueryDTO();
 //        demoQuery.setGmtCreateFrom(DateUtils.parse("2011-01-01"));
 //        demoQuery.setGmtCreateTo(DateUtils.parse("2013-12-31"));

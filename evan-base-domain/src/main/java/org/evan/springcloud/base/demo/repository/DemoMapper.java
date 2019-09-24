@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Param;
 import org.evan.springcloud.base.demo.model.DemoPO;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 
-
 import java.io.Serializable;
 import java.util.List;
 

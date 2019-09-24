@@ -2,8 +2,8 @@ package org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.exception.DataNotFindException;
-import org.evan.libraries.model.result.OperateCommonResultType;
 import org.evan.libraries.model.result.OperateResult;
+import org.evan.libraries.model.result.OperateResultConstants;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Demo领域Facade
+ *
  * @author Evan.Shen
  * @since 2019-08-09
  */
@@ -58,7 +59,7 @@ public class DemoApplicationService {
         DemoPO demoOld = demoMapper.load(demoId);
         if (demoOld == null) {
             //通过返回代码告知调用者
-            result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要修改的Demo不存在或已删除,id[" + demoId + "]");
+            result.setCodeAndMsg(OperateResultConstants.DATA_NOT_FIND.getCode(), "需要修改的Demo不存在或已删除,id[" + demoId + "]");
         } else {
             Demo demo = demoFactory.create(demoId, demoAddUpdateParams);
             demoMapper.update(demo);
@@ -111,7 +112,7 @@ public class DemoApplicationService {
         OperateResult result = OperateResult.create();
         DemoPO demo = demoMapper.load(demoId);
         if (demo == null) {
-            result.setCodeAndMsg(OperateCommonResultType.DATA_NOT_FIND.getCode(),"需要变更状态的Demo不存在或已删除,id[" + demoId + "]");
+            result.setCodeAndMsg(OperateResultConstants.DATA_NOT_FIND.getCode(), "需要变更状态的Demo不存在或已删除,id[" + demoId + "]");
         } else {
             updateStatusInner(demoId, newStatus);
         }

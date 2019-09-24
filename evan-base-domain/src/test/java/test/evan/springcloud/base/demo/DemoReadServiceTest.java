@@ -68,7 +68,7 @@ public class DemoReadServiceTest extends ApplicationTestCaseSupport {
     @Test
     public void testNotExists() {
         long id = RandomDataUtil.randomLong(100);
-        boolean notExists = demoReadService.notExists(id,"Txt");
+        boolean notExists = demoReadService.notExists(id, "Txt");
         log.info(">>>> testNotExists:" + notExists);
     }
 }

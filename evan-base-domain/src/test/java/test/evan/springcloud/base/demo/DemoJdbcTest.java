@@ -1,9 +1,9 @@
 package test.evan.springcloud.base.demo;
 
-import test.evan.springcloud.base.support.MySQLTestCaseSupport;
 import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import test.evan.springcloud.base.support.MySQLTestCaseSupport;
 
 
 /**
@@ -23,7 +23,7 @@ public class DemoJdbcTest extends MySQLTestCaseSupport {
      */
     @Test
     public void testCheckFieldText() {
-         boolean result = demoJdbc.notExists(null,"aa");
+        boolean result = demoJdbc.notExists(null, "aa");
 
         LOGGER.info(">>>> testCheckFieldText, result is [{}]", result);
     }

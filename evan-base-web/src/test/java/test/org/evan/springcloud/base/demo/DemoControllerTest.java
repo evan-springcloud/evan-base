@@ -7,7 +7,6 @@ import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
 import org.evan.springcloud.base.demo.model.DemoVO;
-import org.evan.springcloud.base.utils.BeanUtil;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -72,9 +71,9 @@ public class DemoControllerTest extends WebTestCaseSupport {
             if (val != null) {
                 String strVal = null;
 
-                if(val instanceof Date){
-                    strVal = DateUtil.format ((Date)val,DateUtil.FORMAT_FULL_STRING);
-                }else{
+                if (val instanceof Date) {
+                    strVal = DateUtil.format((Date) val, DateUtil.FORMAT_FULL_STRING);
+                } else {
                     strVal = val.toString();
                 }
                 formData.add(entry.getKey(), strVal);

@@ -2,12 +2,12 @@ package org.evan.springcloud.base.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.PageResult;
+import org.evan.libraries.utils.BeanUtil;
 import org.evan.springcloud.base.demo.model.DemoPO;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.evan.springcloud.base.demo.model.DemoVO;
 import org.evan.springcloud.base.demo.repository.DemoJdbc;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
-import org.evan.springcloud.base.utils.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;

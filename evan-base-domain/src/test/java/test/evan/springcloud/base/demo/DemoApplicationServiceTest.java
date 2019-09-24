@@ -34,7 +34,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
         DemoAddUpdateDTO demoAddUpdateParams = DemoTestData.randomDemoAddUpdateParams();
         OperateResult<Demo> result = demoService.add(demoAddUpdateParams);
 
-        log.info(">>>> testAdd: "+ result);
+        log.info(">>>> testAdd: " + result);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
         long demoId = RandomDataUtil.randomInt(50);
         OperateResult result = demoService.update(demoAddUpdateParams);
 
-        log.info(">>>> testUpdate: "+ result);
+        log.info(">>>> testUpdate: " + result);
     }
 
     /**
@@ -81,7 +81,7 @@ public class DemoApplicationServiceTest extends ApplicationTestCaseSupport {
         long demoId = RandomDataUtil.randomInt(50);
         PublishStatusEnum newStatus = demoId % 2 == 0 ? PublishStatusEnum.PUBLISHED : PublishStatusEnum.NO_PUBLISH;
         OperateResult result = demoService.updateStatus(demoId, newStatus);
-        log.info(">>>> testUpdateStatus: "+ result);
+        log.info(">>>> testUpdateStatus: " + result);
     }
 
     /**

@@ -2,7 +2,10 @@ package org.evan.springcloud.base.controller;
 
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.evan.libraries.model.result.*;
+import org.evan.libraries.model.result.OperateResult;
+import org.evan.libraries.model.result.OperateResultConstants;
+import org.evan.libraries.model.result.PageResult;
+import org.evan.libraries.model.result.RestResponse;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.DemoReadService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
@@ -80,9 +83,9 @@ public class DemoController {
         DemoVO demo = demoReadService.getById(id);
 
         RestResponse restResponse = RestResponse.create();
-        if(demo==null){
-            restResponse.setCode(OperateCommonResultType.DATA_NOT_FIND);
-        }else{
+        if (demo == null) {
+            restResponse.setCode(OperateResultConstants.DATA_NOT_FIND);
+        } else {
             restResponse.setData(demo);
         }
         return restResponse;

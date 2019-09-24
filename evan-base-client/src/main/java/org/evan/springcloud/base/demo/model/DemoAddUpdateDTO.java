@@ -2,7 +2,6 @@ package org.evan.springcloud.base.demo.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

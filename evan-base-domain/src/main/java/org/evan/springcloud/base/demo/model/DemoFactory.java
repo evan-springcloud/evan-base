@@ -1,9 +1,11 @@
 package org.evan.springcloud.base.demo.model;
 
-import org.evan.springcloud.base.utils.BeanUtil;
+import org.evan.libraries.utils.BeanUtil;
 import org.springframework.stereotype.Component;
 
 /**
+ *
+ * Demo 领域模型 创建工场
  * @author Evan.Shen
  * @since 2019-09-20
  */

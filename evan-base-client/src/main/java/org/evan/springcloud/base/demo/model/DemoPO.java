@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 示例
+ * Demo持久化对象
  */
 @ApiModel("Demo")
 public class DemoPO implements Serializable {

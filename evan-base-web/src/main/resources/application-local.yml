@@ -36,7 +36,7 @@ logging:
     console: "%clr(%d{dd HH:mm:ss}){faint} %clr(%-5p) %clr([%15.15t]){faint} %clr(%-50logger{50}){cyan} %clr(:){faint} %m%n"
   level:
     org.springframework.boot.autoconfigure.logging: warn
-#    io.swagger.models.parameters: error
+    io.swagger.models.parameters: error
     java.sql.Statement: debug
     java.sql.PreparedStatement: debug
     java.sql.ResultSet: debug

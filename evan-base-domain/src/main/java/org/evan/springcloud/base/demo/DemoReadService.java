@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 读取Service
+ *
  * @author Evan.Shen
  * @since 2019-09-21
  */
@@ -97,9 +99,10 @@ public class DemoReadService {
 
     public DemoVO getById(long id) {
         DemoPO demo = demoMapper.load(id);// 取demo
-        DemoVO demoVO = new DemoVO();
+        DemoVO demoVO = null;
 
         if (demo != null) {
+            demoVO = new DemoVO();
             BeanUtil.quickCopy(demo, demoVO);
             convertValueToText(demoVO, null, null);
         }

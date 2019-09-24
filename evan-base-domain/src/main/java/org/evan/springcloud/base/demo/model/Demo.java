@@ -4,6 +4,8 @@ import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
 import org.evan.springcloud.base.utils.BeanUtil;
 
 /**
+ * Demo领域模型
+ *
  * @author Evan.Shen
  * @since 2019-09-20
  */

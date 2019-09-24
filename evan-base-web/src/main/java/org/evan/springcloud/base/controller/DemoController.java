@@ -2,9 +2,7 @@ package org.evan.springcloud.base.controller;
 
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.evan.libraries.model.result.OperateResult;
-import org.evan.libraries.model.result.PageResult;
-import org.evan.libraries.model.result.RestResponse;
+import org.evan.libraries.model.result.*;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.DemoReadService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
@@ -21,6 +19,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 /**
  * @author Evan.Shen
@@ -46,13 +45,13 @@ public class DemoController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping("list")
-    public RestResponse list(DemoQueryDTO demoQuery) {
+    public RestResponse<ArrayList<Demo>> list(DemoQueryDTO demoQuery) {
         log.info("=====>>query: " + demoQuery);
         PageResult<DemoVO> page = demoReadService.query(demoQuery);
         return RestResponse.create(page);
     }
 
-    @ApiOperation(value = "添加-formdata", notes = "这是接口描述")
+    @ApiOperation(value = "添加-参数为formdata格式", notes = "这是接口描述")
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     //@PostMapping(value = "add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 //    @CsrfValidate
@@ -64,7 +63,7 @@ public class DemoController {
         return RestResponse.create(result);
     }
 
-    @ApiOperation(value = "添加-json", notes = "这是接口描述")
+    @ApiOperation(value = "添加-参数为json格式", notes = "这是接口描述")
     @PostMapping(value = "add2", consumes = MediaType.APPLICATION_JSON_VALUE)
     //@PostMapping(value = "add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 //    @CsrfValidate
@@ -75,11 +74,18 @@ public class DemoController {
         return RestResponse.create(result);
     }
 
-    @ApiOperation(value = "根据id获取单个-id在请求参数中")
+    @ApiOperation(value = "根据id获取单个")
     @GetMapping("load")
     public RestResponse<DemoVO> load(@RequestParam("id") @ApiParam(value = "Id", required = true) Long id) {
         DemoVO demo = demoReadService.getById(id);
-        return RestResponse.create(demo);
+
+        RestResponse restResponse = RestResponse.create();
+        if(demo==null){
+            restResponse.setCode(OperateCommonResultType.DATA_NOT_FIND);
+        }else{
+            restResponse.setData(demo);
+        }
+        return restResponse;
     }
 
 //    @ApiOperation(value = "根据id获取单个-id在请求路径中")
@@ -89,7 +95,7 @@ public class DemoController {
 //        return RestResponse.create(demo);
 //    }
 
-    @ApiOperation(value = "修改-formdata")
+    @ApiOperation(value = "修改-参数为formdata")
     @PostMapping(value = "update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.MODIFY, objectIdParamKey = "arg0", objectNameParamKey = "arg1.fieldText", template = "新数据：${arg1}")
     public RestResponse update1(DemoAddUpdateDTO demoAddUpdateParams) {
@@ -98,8 +104,8 @@ public class DemoController {
         return RestResponse.create(result);
     }
 
-    @ApiOperation(value = "修改-json")
-    @PostMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "修改-参数为json")
+    @PostMapping(value = "update2", consumes = MediaType.APPLICATION_JSON_VALUE)
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.MODIFY, objectIdParamKey = "arg0.id", objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
     public RestResponse update2(@RequestBody DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
@@ -146,10 +152,10 @@ public class DemoController {
     /**
      * 状态变更
      */
-    @ApiOperation(value = "状态变更-id在请求query中")
+    @ApiOperation(value = "状态变更-id在请求query中(不建议)")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "Id", required = true, paramType = "query", dataType = "integer"),
-            @ApiImplicitParam(name = "newStatus", value = "变更后的状态", required = true, paramType = "query", dataType = "integer", allowableValues = "1,2")
+            @ApiImplicitParam(name = "id", value = "Id", required = true, paramType = "query", type = "integer"),
+            @ApiImplicitParam(name = "newStatus", value = "变更后的状态", required = true, paramType = "query", type = "integer", allowableValues = "1,2")
     })
     @PostMapping("update-status2")
 //    @OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.CHANGE_STATUS,
@@ -182,12 +188,14 @@ public class DemoController {
     }
 
     @ApiOperation(value = "校验fieldText是否不重复", notes = "返回true:不重复，false:重复")
-    //@io.swagger.annotations.RestResponse(code = 200, message = "true:不重复，false:重复")
+    @ApiResponse(code = 200, message = "true:不重复，false:重复")
     @GetMapping(value = "fieldText-check")
     public RestResponse<Boolean> checkFieldText(
             @RequestParam(value = "id", required = false) @ApiParam(value = "id为空表示新增时校验，否则表示修改时校验") Long id,
             @RequestParam("fieldText") @ApiParam(value = "验证的文本", required = true) String fieldText) {
-        return RestResponse.create(demoReadService.notExists(id, fieldText));
+        boolean notExists = demoReadService.notExists(id, fieldText);
+        RestResponse restResponse = RestResponse.create(notExists);
+        return restResponse;
     }
 
     @ApiIgnore

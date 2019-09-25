@@ -41,7 +41,8 @@ public class DemoApplicationService {
         OperateResult result = OperateResult.create();
         // 验证
         //BeanValidators.validateWithException(validator, demoAddUpdateParams);
-        DemoDomain demo = demoFactory.createDemoDomain(demoAddUpdateParams);
+        Demo demo = demoFactory.createDemo(demoAddUpdateParams);
+        demo.setStatus(PublishStatusEnum.PUBLISHED.getValue());
 
         demoMapper.insert(demo);// 插入数据
         result.setData(demo);

@@ -9,7 +9,7 @@ import org.evan.libraries.model.result.RestResponse;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.DemoReadService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
-import org.evan.springcloud.base.demo.model.Demo;
+import org.evan.springcloud.base.demo.model.DemoDomain;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.evan.springcloud.base.demo.model.DemoVO;
@@ -48,7 +48,7 @@ public class DemoController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping("list")
-    public RestResponse<ArrayList<Demo>> list(DemoQueryDTO demoQuery) {
+    public RestResponse<ArrayList<DemoDomain>> list(DemoQueryDTO demoQuery) {
         log.info("=====>>query: " + demoQuery);
         PageResult<DemoVO> page = demoReadService.query(demoQuery);
         return RestResponse.create(page);
@@ -60,9 +60,9 @@ public class DemoController {
 //    @CsrfValidate
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.ADD, objectIdParamKey = "id", objectIdFrom = OperationLogObjectIdFromEnum.RESULT, objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
 
-    public RestResponse<Demo> add(DemoAddUpdateDTO demoAddUpdateParams) {
+    public RestResponse<DemoDomain> add(DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
-        OperateResult<Demo> result = demoApplicationService.add(demoAddUpdateParams);
+        OperateResult<DemoDomain> result = demoApplicationService.add(demoAddUpdateParams);
         return RestResponse.create(result);
     }
 
@@ -71,9 +71,9 @@ public class DemoController {
     //@PostMapping(value = "add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
 //    @CsrfValidate
     //@OperationLog(bizType = BizTypeEnum.DEMO, operationType = OperationTypeEnum.ADD, objectIdParamKey = "id", objectIdFrom = OperationLogObjectIdFromEnum.RESULT, objectNameParamKey = "arg0.fieldText", template = "新数据：${arg0}")
-    public RestResponse<Demo> add2(@Valid @RequestBody @ApiParam(value = "添加的对象", required = true) DemoAddUpdateDTO demoAddUpdateParams) {
+    public RestResponse<DemoDomain> add2(@Valid @RequestBody @ApiParam(value = "添加的对象", required = true) DemoAddUpdateDTO demoAddUpdateParams) {
         log.info("=====>>" + demoAddUpdateParams);
-        OperateResult<Demo> result = demoApplicationService.add(demoAddUpdateParams);
+        OperateResult<DemoDomain> result = demoApplicationService.add(demoAddUpdateParams);
         return RestResponse.create(result);
     }
 

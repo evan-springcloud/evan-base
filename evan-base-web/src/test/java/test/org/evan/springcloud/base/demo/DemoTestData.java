@@ -2,15 +2,15 @@ package test.org.evan.springcloud.base.demo;
 
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
-import org.evan.springcloud.base.demo.model.DemoPO;
+import org.evan.springcloud.base.demo.model.Demo;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class DemoTestData {
-    public static DemoPO randomDemoPO() {
+    public static Demo randomDemo() {
 
-        DemoPO demo = new DemoPO();
+        Demo demo = new Demo();
 
         demo.setFieldText(randomTitle());
         demo.setFieldNumber(new BigDecimal(RandomDataUtil.randomInt(999999)));

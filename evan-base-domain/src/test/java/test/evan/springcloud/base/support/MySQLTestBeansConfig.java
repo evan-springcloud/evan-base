@@ -9,7 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @author evan.shen
  */
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"org.evan.springcloud.core.config.mysql", "org.evan.springcloud.base.*.repository"})
+@ComponentScan(basePackages = {
+        "org.evan.springcloud.base.*.config",
+        "org.evan.springcloud.base.*.repository"
+})
 //@MapperScan(basePackages = {
 //        "org.evan.springcloud.base.*.repository",
 //}) //mybatis mapper 所在package

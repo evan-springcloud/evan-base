@@ -36,6 +36,8 @@ spring:
       timeout: 2000ms
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+    default-property-inclusion: non_null
 
 #mybatis:
 #  mapper-locations: classpath*:mapper/*Mapper.xml #映射文件所在路径

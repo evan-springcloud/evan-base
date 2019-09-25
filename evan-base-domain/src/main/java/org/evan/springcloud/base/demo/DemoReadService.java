@@ -3,7 +3,7 @@ package org.evan.springcloud.base.demo;
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.PageResult;
 import org.evan.libraries.utils.BeanUtil;
-import org.evan.springcloud.base.demo.model.DemoPO;
+import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.evan.springcloud.base.demo.model.DemoVO;
 import org.evan.springcloud.base.demo.repository.DemoJdbc;
@@ -68,7 +68,7 @@ public class DemoReadService {
 //        }
 
         if (recordCount > 0) {
-            List<DemoPO> demos = demoMapper.queryList(demoQuery);
+            List<Demo> demos = demoMapper.queryList(demoQuery);
             List<DemoVO> demoVOs = convertRepresentation(demos);
 
             pageResult.setData(demoVOs);
@@ -77,7 +77,7 @@ public class DemoReadService {
         return pageResult;
     }
 
-    private List<DemoVO> convertRepresentation(List<DemoPO> demos) {
+    private List<DemoVO> convertRepresentation(List<Demo> demos) {
         int recordCountOnCurrentPage = demos.size();
         List<DemoVO> demoVOs = new ArrayList<>(recordCountOnCurrentPage);
 
@@ -85,7 +85,7 @@ public class DemoReadService {
         // 循环的时候缓存结果，遇到相同的数据，从缓存中取出，缓存new的时候就分配大小，尽量不要出现扩容的情况
         Map<String, String> dataDictCache = new HashMap<>(recordCountOnCurrentPage);
         Map<String, String> regionCache = new HashMap<>(recordCountOnCurrentPage * 2);
-        for (DemoPO o : demos) {
+        for (Demo o : demos) {
             DemoVO demoVO = new DemoVO();
 
             BeanUtil.quickCopy(o, demoVO);
@@ -98,7 +98,7 @@ public class DemoReadService {
     }
 
     public DemoVO getById(long id) {
-        DemoPO demo = demoMapper.load(id);// 取demo
+        Demo demo = demoMapper.selectById(id);// 取demo
         DemoVO demoVO = null;
 
         if (demo != null) {
@@ -125,7 +125,7 @@ public class DemoReadService {
         demoQuery.setSortByDefault(false);
         demoQuery.setIncludeDeleted(true);
 
-        List<DemoPO> demos = demoMapper.queryList(demoQuery);
+        List<Demo> demos = demoMapper.queryList(demoQuery);
         List<DemoVO> demoVOs = convertRepresentation(demos);
         return demoVOs;
     }

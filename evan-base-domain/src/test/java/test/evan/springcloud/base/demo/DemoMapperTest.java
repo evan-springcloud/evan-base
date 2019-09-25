@@ -1,7 +1,7 @@
 package test.evan.springcloud.base.demo;
 
 
-import org.evan.springcloud.base.demo.model.DemoPO;
+import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.evan.springcloud.base.demo.repository.DemoMapper;
 import org.junit.Test;
@@ -19,18 +19,18 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 
     @Test
     public void testLoad() {
-        DemoPO demo = demoMapper.load(1L);
+        Demo demo = demoMapper.selectById(1L);
         LOGGER.info(">>>> test load:" + demo + "");
     }
 
     @Test
     @Rollback(false)
     public void testInsert() {
-        DemoPO demo = DemoTestData.randomDemoPO();
+        Demo demo = DemoTestData.randomDemo();
         demoMapper.insert(demo);
         LOGGER.info(">>>> test testInsert: id[{}]", demo.getId());
 
-        demo = DemoTestData.randomDemoPO();
+        demo = DemoTestData.randomDemo();
         //demo.setFieldCity("12345677889");
         demoMapper.insert(demo);
         LOGGER.info(">>>> test testInsert:" + demo);
@@ -39,7 +39,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
     @Test
     @Rollback(false)
     public void testUpdate() {
-        DemoPO demo = new DemoPO(4823L);
+        Demo demo = new Demo(4823L);
         demo.setFieldText("BBB");
         demo.setFieldDatetime(new Date());
         demo.setFieldNumber(new BigDecimal("22121212.312121212"));
@@ -74,7 +74,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //                DemoColumns.GMT_MODIFY.getColumn()//
 //        );
 //        demoQuery.setJoinDemoChild1(true);
-        List<DemoPO> demos = demoMapper.queryList(demoQuery);
+        List<Demo> demos = demoMapper.queryList(demoQuery);
 
         LOGGER.info(">>>> testQueryForList:" + demos.size());
     }
@@ -86,7 +86,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
         demoQuery.setFieldText("1");
         //demoQuery.setPageSize(5);
 
-        List<DemoPO> demos = demoMapper.queryList(demoQuery);
+        List<Demo> demos = demoMapper.queryList(demoQuery);
 
         LOGGER.info(">>>> testQueryForCount:" + demos.size());
     }
@@ -101,7 +101,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //        demoQuery.setJoinDemoChild1(true);
 
         int count = demoMapper.queryCount(demoQuery);
-        List<DemoPO> demos = demoMapper.queryList(demoQuery);
+        List<Demo> demos = demoMapper.queryList(demoQuery);
         //PageResult<Demo> pageResult = PageResult.create(demoQuery, demos, count);
 
         //log.info(pageResult.toString());

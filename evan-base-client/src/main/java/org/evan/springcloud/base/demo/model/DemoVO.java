@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @ApiModel("Demo输出对象")
 @Data
-public class DemoVO extends DemoPO {
+public class DemoVO extends Demo {
     @Override
     public String toString() {
         return "DemoVO{} " + super.toString();

@@ -12,7 +12,7 @@ import java.util.Date;
  * Demo持久化对象
  */
 @ApiModel("Demo")
-public class DemoPO implements Serializable {
+public class Demo implements Serializable {
 
     private static final long serialVersionUID = 13792681968342L;
 
@@ -72,10 +72,10 @@ public class DemoPO implements Serializable {
     @ApiModelProperty(value = "Html文本编辑截取")
     private String fieldHtmleditorCut;
 
-    public DemoPO() {
+    public Demo() {
     }
 
-    public DemoPO(Long id) {
+    public Demo(Long id) {
         this.id = id;
     }
 

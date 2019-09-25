@@ -1,6 +1,5 @@
 package test.evan.springcloud.base.support;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -10,10 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @author evan.shen
  */
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"org.evan.springcloud.base.*.repository"})
-@MapperScan(basePackages = {
-        "org.evan.springcloud.base.*.repository",
-}) //mybatis mapper 所在package
+@ComponentScan(basePackages = {"org.evan.springcloud.core.config.mysql", "org.evan.springcloud.base.*.repository"})
+//@MapperScan(basePackages = {
+//        "org.evan.springcloud.base.*.repository",
+//}) //mybatis mapper 所在package
 public class MySQLTestBeansConfig {
 
 }

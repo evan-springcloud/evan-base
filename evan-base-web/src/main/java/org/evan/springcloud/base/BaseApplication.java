@@ -16,9 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "org.evan.springcloud.core.oauth",
         "org.evan.springcloud.base",
 })
-@MapperScan(basePackages = {
-        "org.evan.springcloud.base.*.repository",
-}) //mybatis mapper 所在package
+//@MapperScan(basePackages = {
+//        "org.evan.springcloud.base.*.repository",
+//}) //mybatis mapper 所在package
 @EnableSwagger2
 public class BaseApplication {
     public static void main(String[] args) {

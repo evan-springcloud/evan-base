@@ -42,9 +42,9 @@ spring:
         max-wait: 5000ms
       timeout: 2000ms
 
-mybatis:
-  mapper-locations: classpath*:mapper/*Mapper.xml #映射文件所在路径
-  type-aliases-package:  org.evan.springcloud.**.model  #PO所在包
+#mybatis:
+#  mapper-locations: classpath*:mapper/*Mapper.xml #映射文件所在路径
+#  type-aliases-package:  org.evan.springcloud.base.demo.model  #PO所在包
 
 pagehelper:
   helperDialect: mysql

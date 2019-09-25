@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>2.1.8.RELEASE</version>
     </parent>
 
     <groupId>org.evan.springcloud</groupId>
@@ -26,6 +26,7 @@
         <springboot.version>2.1.6.RELEASE</springboot.version>
         <spring.version>5.1.9.RELEASE</spring.version>
         <swagger.version>2.9.2</swagger.version>
+        <mybatis-plus>3.2.0</mybatis-plus>
     </properties>
 
     <profiles>

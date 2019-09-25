@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 发布状态
  */
-public enum PublishStatusEnum {
+public enum PublishStatusEnum  {
     /**
      * 未发布
      */

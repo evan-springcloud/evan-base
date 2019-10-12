@@ -79,7 +79,7 @@
         <repository>
             <id>nexus-releases</id>
             <name>nexus Repository</name>
-            <url>http://120.27.218.59:8081/repository/maven-public/</url>
+            <url>http://nexus.shumaidata.com/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -93,12 +93,12 @@
         <repository>
             <id>nexus-releases</id>
             <name>Internal Releases</name>
-            <url>http://120.27.218.59:8081/repository/maven-releases</url>
+            <url>http://nexus.shumaidata.com/repository/maven-releases</url>
         </repository>
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <name>Internal Snapshots</name>
-            <url>http://120.27.218.59:8081/repository/maven-snapshots</url>
+            <url>http://nexus.shumaidata.com/repository/maven-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

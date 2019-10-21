@@ -16,6 +16,7 @@
 
     <modules>
         <module>evan-base-client</module>
+        <module>evan-base-infrastructure</module>
         <module>evan-base-domain</module>
         <module>evan-base-web</module>
     </modules>

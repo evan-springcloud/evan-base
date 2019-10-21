@@ -1,7 +1,8 @@
-package org.evan.springcloud.base.demo.repository;
+package org.evan.springcloud.base.repository.jdbc;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +14,10 @@ import java.util.List;
  */
 @Repository
 public class DemoJdbc {
+
     @Autowired
+    @Qualifier("jdbcTemplateNo1")
     private JdbcTemplate jdbcTemplate;
-
-
-
 
     public boolean notExists(Long id, String fieldText) {
 

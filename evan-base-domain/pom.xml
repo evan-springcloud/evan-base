@@ -26,6 +26,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.evan.springcloud</groupId>
+            <artifactId>evan-base-infrastructure</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.evan.libraries</groupId>
             <artifactId>evan-libraries-orm</artifactId>
             <version>${evan-libraries.version}</version>

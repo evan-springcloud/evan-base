@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.demo.repository;
+package org.evan.springcloud.base.demo;
 
 /**
  * @author Evan.Shen

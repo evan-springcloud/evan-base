@@ -1,7 +1,9 @@
-package org.evan.springcloud.base.demo.model;
+package org.evan.springcloud.base.demo;
 
 import org.evan.libraries.utils.BeanUtil;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
+import org.evan.springcloud.base.demo.model.Demo;
+import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
 
 /**
  * Demo领域模型

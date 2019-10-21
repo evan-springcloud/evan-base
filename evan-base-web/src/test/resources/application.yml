@@ -1,18 +1,32 @@
 spring:
   application:
     name: evan-base-test
-  datasource:
+  datasource1:
+    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://116.62.114.198:3306/btbs_base?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: MiZhi001
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:   #下面为连接池的补充设置，应用到上面数据源中
-      max-lifetime: 1000
-      minimum-idle: 4
-      idle-timeout: 1000
-      maximum-pool-size: 32
-      connection-test-query: SELECT 1
-      connection-timeout: 2000
+    druid:
+      initial-size: 2
+      min-idle: 2
+      max-active: 8
+      max-wait: 3000 #获取连接等待超时时间
+      time-between-eviction-runs-millis: 30000 #间隔多久进行一次检测，检测需要关闭的空闲连接
+      min-evictable-idle-time-millis: 180000   #一个连接在池中最小生存的时间
+      validation-query: SELECT 'x'
+  datasource2:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://121.40.245.248:3306/billing?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+    username: shumai
+    password: ShuMai@001
+    druid:
+      initial-size: 2
+      min-idle: 2
+      max-active: 8
+      max-wait: 3000 #获取连接等待超时时间
+      time-between-eviction-runs-millis: 30000 #间隔多久进行一次检测，检测需要关闭的空闲连接
+      min-evictable-idle-time-millis: 180000   #一个连接在池中最小生存的时间
+      validation-query: SELECT 'x'
   redis:
     host: 47.96.89.84
     #host: 127.0.0.1
@@ -26,8 +40,6 @@ spring:
         min-idle: 16
         max-wait: 5000ms
       timeout: 2000ms
-  mvc:
-    date-format: yyyy-MM-dd HH:mm:ss
 
 logging:
   pattern:
@@ -39,5 +51,3 @@ logging:
     java.sql.ResultSet: debug
     org.springframework.jdbc.core: TRACE
     org.evan.springcloud.base: DEBUG
-
-

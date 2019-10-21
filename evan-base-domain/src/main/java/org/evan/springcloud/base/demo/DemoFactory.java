@@ -3,7 +3,6 @@ package org.evan.springcloud.base.demo;
 import org.evan.libraries.utils.BeanUtil;
 import org.evan.springcloud.base.demo.model.Demo;
 import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
-import org.evan.springcloud.base.demo.model.DemoDomain;
 import org.evan.springcloud.base.demo.model.DemoVO;
 import org.springframework.stereotype.Component;
 

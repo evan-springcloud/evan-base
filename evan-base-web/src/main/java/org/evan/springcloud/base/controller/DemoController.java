@@ -2,10 +2,7 @@ package org.evan.springcloud.base.controller;
 
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.evan.libraries.model.result.OperateResult;
-import org.evan.libraries.model.result.OperateResultConstants;
-import org.evan.libraries.model.result.PageResult;
-import org.evan.libraries.model.result.RestResponse;
+import org.evan.libraries.model.result.*;
 import org.evan.springcloud.base.demo.DemoApplicationService;
 import org.evan.springcloud.base.demo.DemoReadService;
 import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
@@ -42,10 +39,10 @@ public class DemoController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping("list")
-    public RestResponse<ArrayList<DemoVO>> list(DemoQueryDTO demoQuery) {
+    public RestPageResponse<DemoVO> list(DemoQueryDTO demoQuery) {
         log.info("=====>>query: " + demoQuery);
         PageResult<DemoVO> page = demoReadService.query(demoQuery);
-        return RestResponse.create(page);
+        return RestPageResponse.create(page);
     }
 
     @ApiOperation(value = "添加-参数为formdata格式", notes = "这是接口描述")

@@ -34,7 +34,7 @@
         <profile>
             <id>develop</id>
             <properties>
-                <evan-libraries.version>1.0-SNAPSHOT</evan-libraries.version>
+                <evan-libraries.version>1.1-SNAPSHOT</evan-libraries.version>
                 <evan-services-core.version>1.0-SNAPSHOT</evan-services-core.version>
                 <base-service-client.version>1.0-SNAPSHOT</base-service-client.version>
                 <user-service-client.version>1.0-SNAPSHOT</user-service-client.version>
@@ -46,7 +46,7 @@
         <profile>
             <id>release</id>
             <properties>
-                <evan-libraries.version>1.0</evan-libraries.version>
+                <evan-libraries.version>1.1</evan-libraries.version>
                 <evan-services-core.version>1.0</evan-services-core.version>
                 <base-service-client.version>1.0</base-service-client.version>
                 <user-service-client.version>1.0</user-service-client.version>

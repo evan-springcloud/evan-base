@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.demo.model;
+package org.evan.springcloud.base.service.demo.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

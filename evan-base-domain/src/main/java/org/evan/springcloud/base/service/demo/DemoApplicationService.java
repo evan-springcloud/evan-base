@@ -1,12 +1,12 @@
-package org.evan.springcloud.base.demo;
+package org.evan.springcloud.base.service.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.exception.DataNotFindException;
 import org.evan.libraries.model.result.OperateResult;
 import org.evan.libraries.model.result.OperateResultConstants;
-import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
-import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoAddUpdateDTO;
+import org.evan.springcloud.base.service.demo.enums.PublishStatusEnum;
+import org.evan.springcloud.base.service.demo.model.Demo;
+import org.evan.springcloud.base.service.demo.model.DemoAddUpdateDTO;
 import org.evan.springcloud.base.repository.mapper.first.DemoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

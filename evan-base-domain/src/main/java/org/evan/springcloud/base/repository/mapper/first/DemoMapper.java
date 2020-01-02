@@ -3,8 +3,8 @@ package org.evan.springcloud.base.repository.mapper.first;
 
 import org.apache.ibatis.annotations.Param;
 import org.evan.libraries.model.result.PageResult;
-import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.service.demo.model.Demo;
+import org.evan.springcloud.base.service.demo.model.DemoQueryDTO;
 
 import java.io.Serializable;
 import java.util.List;

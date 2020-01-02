@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.web.client.TokenClientHttpRequestInterceptor;
 import org.evan.libraries.web.session.LoginAccountContext;
 import org.evan.springcloud.core.oauth.LoginUser;
-import org.evan.springcloud.core.oauth.LoginUserSession;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

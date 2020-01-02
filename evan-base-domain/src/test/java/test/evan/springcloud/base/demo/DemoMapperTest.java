@@ -1,19 +1,20 @@
-package test.org.evan.springcloud.base.demo;
+package test.evan.springcloud.base.demo;
 
 
-import org.evan.springcloud.base.demo.model.Demo;
-import org.evan.springcloud.base.demo.model.DemoQueryDTO;
 import org.evan.springcloud.base.repository.mapper.first.DemoMapper;
+import org.evan.springcloud.base.service.demo.model.Demo;
+import org.evan.springcloud.base.service.demo.model.DemoQueryDTO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
-import test.org.evan.springcloud.base.support.MySQLTestCaseSupport;
+import test.evan.springcloud.base.support.MySQLTestCaseSupport;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 public class DemoMapperTest extends MySQLTestCaseSupport {
+
     @Autowired
     private DemoMapper demoMapper;
 

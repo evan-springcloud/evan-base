@@ -26,7 +26,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 }, sqlSessionTemplateRef = "sqlSessionTemplateNo1")
 
 public class DataSource1AutoConfiguration {
-    private static final String TYPE_ALIASES_PACKAGE = "org.evan.springcloud.base.demo.**.model";
+    private static final String TYPE_ALIASES_PACKAGE = "org.evan.springcloud.base.**.model";
 
 //    @Autowired
 //    @Qualifier("dataSourceNo1")

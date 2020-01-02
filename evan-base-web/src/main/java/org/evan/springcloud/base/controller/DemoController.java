@@ -3,10 +3,10 @@ package org.evan.springcloud.base.controller;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.*;
-import org.evan.springcloud.base.demo.DemoApplicationService;
-import org.evan.springcloud.base.demo.DemoReadService;
-import org.evan.springcloud.base.demo.enums.PublishStatusEnum;
-import org.evan.springcloud.base.demo.model.*;
+import org.evan.springcloud.base.service.demo.DemoApplicationService;
+import org.evan.springcloud.base.service.demo.DemoReadService;
+import org.evan.springcloud.base.service.demo.enums.PublishStatusEnum;
+import org.evan.springcloud.base.service.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
@@ -16,7 +16,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 /**
  * @author Evan.Shen

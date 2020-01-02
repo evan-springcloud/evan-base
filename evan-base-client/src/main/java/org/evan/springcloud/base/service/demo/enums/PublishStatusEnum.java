@@ -1,4 +1,4 @@
-package org.evan.springcloud.base.demo.enums;
+package org.evan.springcloud.base.service.demo.enums;
 
 import java.util.HashMap;
 import java.util.Map;

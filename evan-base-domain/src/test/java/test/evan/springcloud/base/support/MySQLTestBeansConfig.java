@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
-        "org.evan.springcloud.**.config.datasource"
+        "org.evan.springcloud.core.components.datasource"
         , "org.evan.springcloud.base.**.jdbc"})
 public class MySQLTestBeansConfig {
 

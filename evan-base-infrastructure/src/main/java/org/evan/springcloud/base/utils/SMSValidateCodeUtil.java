@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.evan.libraries.utils.RandomDataUtil;
 import org.evan.libraries.utils.StringUtil;
-import org.evan.springcloud.core.utils.ValidateCodeStore;
+import org.evan.springcloud.core.components.validatecode.ValidateCode;
 
 /**
  * @author Evan.Shen
@@ -14,9 +14,9 @@ import org.evan.springcloud.core.utils.ValidateCodeStore;
 @Slf4j
 public class SMSValidateCodeUtil {
 
-    private ValidateCodeStore validateCodeStore;
+    private ValidateCode validateCodeStore;
 
-    public SMSValidateCodeUtil(ValidateCodeStore ValidateCodeStore) {
+    public SMSValidateCodeUtil(ValidateCode ValidateCodeStore) {
         this.validateCodeStore = ValidateCodeStore;
 
         log.info(">>>> {} inited", SMSValidateCodeUtil.class.getSimpleName());

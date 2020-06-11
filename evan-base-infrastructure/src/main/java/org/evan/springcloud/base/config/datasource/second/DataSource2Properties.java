@@ -1,6 +1,6 @@
 package org.evan.springcloud.base.config.datasource.second;
 
-import org.evan.springcloud.core.config.datasource.AbstractDataSourceProperties;
+import org.evan.springcloud.core.components.datasource.AbstractDataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**

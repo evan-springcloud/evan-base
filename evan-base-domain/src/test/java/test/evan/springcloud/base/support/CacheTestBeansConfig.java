@@ -1,8 +1,6 @@
 package test.evan.springcloud.base.support;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -13,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
         //"org.evanframework.datadict"
         //"org.evanframework.datadict.service"
-        "org.evan.springcloud.core.config.cache",
+        "org.evan.springcloud.core.components.cache",
         "org.evan.springcloud.base"
 })
 public class CacheTestBeansConfig {

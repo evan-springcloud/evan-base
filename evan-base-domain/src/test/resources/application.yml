@@ -28,10 +28,10 @@ spring:
       min-evictable-idle-time-millis: 180000   #一个连接在池中最小生存的时间
       validation-query: SELECT 'x'
   redis:
-    host: 47.96.89.84
+    host: 121.40.245.248
     #host: 127.0.0.1
     port: 6379
-    password: MiZhi001
+    password: ShuMai@001
     #timeout: 3000
     lettuce:
       pool:
@@ -40,6 +40,15 @@ spring:
         min-idle: 16
         max-wait: 5000ms
       timeout: 2000ms
+  mail:
+    host: smtp.mxhichina.com #发送邮件服务器
+    username: tianyandata@shumaidata.com #发送邮件的邮箱地址
+    password:  Qa123456
+    properties.mail.smtp.port: 465 #端口号465或587
+    from: tianyandata@shumaidata.com # 发送邮件的地址，和上面username一致
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
 
 logging:
   pattern:

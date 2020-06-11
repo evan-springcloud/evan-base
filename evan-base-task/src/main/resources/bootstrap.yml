@@ -1,0 +1,58 @@
+server:
+  port: 8033
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: evan-base-task
+
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: EVAN-CONFIG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 121.40.245.205
+  client:
+    serviceUrl:
+      defaultZone: http://121.40.245.205:8001/eureka/
+      #defaultZone: http://127.0.0.1:8001/eureka/
+
+---
+spring:
+  profiles: test
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: EVAN-CONFIG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8001/eureka/
+
+---
+spring:
+  profiles: prod
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: EVAN-CONFIG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://172.16.44.85:8001/eureka/

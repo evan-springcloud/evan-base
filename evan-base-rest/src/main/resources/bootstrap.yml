@@ -5,7 +5,7 @@ spring:
   profiles:
     active: local
   application:
-    name: evan-base
+    name: evan-base-rest
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
   jackson:

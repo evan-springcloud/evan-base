@@ -1,8 +1,8 @@
 package test.evan.springcloud.base.demo;
 
 import org.evan.libraries.utils.RandomDataUtil;
-import org.evan.springcloud.base.service.demo.model.DemoAddUpdateDTO;
-import org.evan.springcloud.base.service.demo.model.Demo;
+import org.evan.springcloud.base.model.demo.DemoAddUpdateDTO;
+import org.evan.springcloud.base.model.demo.Demo;
 
 import java.math.BigDecimal;
 

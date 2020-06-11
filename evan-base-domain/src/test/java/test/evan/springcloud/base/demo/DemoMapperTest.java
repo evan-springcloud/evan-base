@@ -2,8 +2,8 @@ package test.evan.springcloud.base.demo;
 
 
 import org.evan.springcloud.base.repository.mapper.first.DemoMapper;
-import org.evan.springcloud.base.service.demo.model.Demo;
-import org.evan.springcloud.base.service.demo.model.DemoQueryDTO;
+import org.evan.springcloud.base.model.demo.Demo;
+import org.evan.springcloud.base.model.demo.DemoQueryDTO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;

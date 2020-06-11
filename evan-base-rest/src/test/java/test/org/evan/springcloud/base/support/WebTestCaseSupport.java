@@ -2,10 +2,13 @@ package test.org.evan.springcloud.base.support;
 
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.web.client.TokenClientHttpRequestInterceptor;
-import org.evan.libraries.web.session.LoginAccountContext;
+
+import org.evan.springcloud.core.oauth.LoginAccountSession;
 import org.evan.springcloud.core.oauth.LoginUser;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.libraries.oauth.model.LoginAccountContext;
+import org.libraries.oauth.model.LoginAccountSetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +33,7 @@ public class WebTestCaseSupport implements WebMvcConfigurer {
     private TokenClientHttpRequestInterceptor tokenClientHttpRequestInterceptor;
 
     @Autowired
-    private LoginUserSession loginUserSession;
+    private LoginAccountSession loginUserSession;
 
     @Value("${local.server.port}")
     private int port;
@@ -41,7 +44,7 @@ public class WebTestCaseSupport implements WebMvcConfigurer {
         LoginUser.setId(-1L);
         LoginUser.setRemoteAddr("127.0.0.1");
         //LoginUser.setRemoteAddr("127.2.3.1");
-        LoginUser.setUserName("张三");
+        LoginUser.setName("张三");
         LoginUser.setAccount("15600002222");
 
 //        Set<String> permissions = new HashSet<>();
@@ -49,7 +52,7 @@ public class WebTestCaseSupport implements WebMvcConfigurer {
 //        LoginUser.setPermissions(permissions);
 
         loginUserSession.save(LoginUser);
-        LoginAccountContext.put(LoginUser);
+        LoginAccountSetter.put(LoginUser);
 //
         restTemplate = new RestTemplate();
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();

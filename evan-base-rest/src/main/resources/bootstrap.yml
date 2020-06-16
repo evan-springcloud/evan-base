@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: local
+    active: local-common, local
   application:
     name: evan-base-rest
   mvc:

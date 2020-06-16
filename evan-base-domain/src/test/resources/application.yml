@@ -1,66 +1,6 @@
 spring:
+  profiles:
+    active: local-common
   application:
     name: evan-base-test
-  datasource1:
-    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://116.62.114.198:3306/btbs_base?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
-    username: root
-    password: MiZhi001
-    druid:
-      initial-size: 2
-      min-idle: 2
-      max-active: 8
-      max-wait: 3000 #获取连接等待超时时间
-      time-between-eviction-runs-millis: 30000 #间隔多久进行一次检测，检测需要关闭的空闲连接
-      min-evictable-idle-time-millis: 180000   #一个连接在池中最小生存的时间
-      validation-query: SELECT 'x'
-  datasource2:
-    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://121.40.245.248:3306/billing?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
-    username: shumai
-    password: ShuMai@001
-    druid:
-      initial-size: 2
-      min-idle: 2
-      max-active: 8
-      max-wait: 3000 #获取连接等待超时时间
-      time-between-eviction-runs-millis: 30000 #间隔多久进行一次检测，检测需要关闭的空闲连接
-      min-evictable-idle-time-millis: 180000   #一个连接在池中最小生存的时间
-      validation-query: SELECT 'x'
-  redis:
-    host: 121.40.245.248
-    #host: 127.0.0.1
-    port: 6379
-    password: ShuMai@001
-    #timeout: 3000
-    lettuce:
-      pool:
-        max-active: 256
-        max-idle: 16
-        min-idle: 16
-        max-wait: 5000ms
-      timeout: 2000ms
-  mail:
-    host: smtp.mxhichina.com #发送邮件服务器
-    username: tianyandata@shumaidata.com #发送邮件的邮箱地址
-    password:  Qa123456
-    properties.mail.smtp.port: 465 #端口号465或587
-    from: tianyandata@shumaidata.com # 发送邮件的地址，和上面username一致
-    properties.mail.smtp.starttls.enable: true
-    properties.mail.smtp.starttls.required: true
-    properties.mail.smtp.ssl.enable: true
 
-logging:
-  pattern:
-    console: "%clr(%d{dd HH:mm:ss}){faint} %clr(%-5p) %clr([%15.15t]){faint} %clr(%-50logger{50}){cyan} %clr(:){faint} %m%n"
-  level:
-    org.springframework.boot.autoconfigure.logging: warn
-    #org.springframework.web: debug
-    io.swagger.models.parameters: error
-    java.sql.Statement: debug
-    java.sql.PreparedStatement: debug
-    java.sql.ResultSet: debug
-    org.springframework.jdbc.core: TRACE
-    org.mybatis.mapper: debug
-    org.evan.libraries: debug
-    org.evan.springcloud.base: DEBUG

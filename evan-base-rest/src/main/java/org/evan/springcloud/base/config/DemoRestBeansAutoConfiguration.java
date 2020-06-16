@@ -17,6 +17,7 @@ public class DemoRestBeansAutoConfiguration extends AbstractRestBeansAutoConfigu
     public void putInterceptorExcludes(Collection<String> excludes) {
 //        excludes.add("/**/login");
 //        excludes.add("/**/login/**");
+        excludes.add("/**/demo/**");
         excludes.add("/**/account/**");
         excludes.add("/**/upload/image");
         excludes.add("/**/validate-code/image/**");

@@ -46,6 +46,8 @@ spring:
         min-idle: 16
         max-wait: 5000ms
       timeout: 2000ms
+  kafka:
+    bootstrap-servers: 121.40.245.248:9092
   mail:
     host: smtp.mxhichina.com #发送邮件服务器
     username: tianyandata@shumaidata.com #发送邮件的邮箱地址

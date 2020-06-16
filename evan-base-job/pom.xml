@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>evan-base-task</artifactId>
+    <artifactId>evan-base-job</artifactId>
     <version>1.0</version>
 
 

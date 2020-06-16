@@ -21,14 +21,8 @@
 
         <dependency>
             <groupId>org.evan.springcloud</groupId>
-            <artifactId>evan-service-core-web</artifactId>
+            <artifactId>evan-service-core-rest</artifactId>
             <version>${evan-services-core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.evan.libraries</groupId>
-            <artifactId>evan-libraries-web</artifactId>
-            <version>${evan-libraries.version}</version>
         </dependency>
 
         <dependency>

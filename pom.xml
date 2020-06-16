@@ -17,9 +17,9 @@
     <modules>
         <module>evan-base-client</module>
         <module>evan-base-domain</module>
-        <module>evan-base-mq-consumer</module>
+        <module>evan-base-job</module>
+        <module>evan-base-mqconsumer</module>
         <module>evan-base-rest</module>
-        <module>evan-base-task</module>
     </modules>
 
     <properties>

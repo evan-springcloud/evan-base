@@ -33,94 +33,6 @@
         <!--        </collection>-->
     </resultMap>
 
-    <insert id="insert" parameterType="demo" useGeneratedKeys="true" keyProperty="id">
-        <selectKey keyProperty="id" order="BEFORE" resultType="long" databaseId="oracle">
-            select
-            SEQ_demo.nextval from dual
-        </selectKey>
-        insert into
-        demo(
-<!--        <if test="_databaseId == 'oracle'">ID,</if>-->
-        <trim prefix="" prefixOverrides=",">
-            <if test="fieldRegion != null">,FIELD_REGION</if>
-            <if test="imagePath != null">,IMAGE_PATH</if>
-            <if test="fieldCheckbox != null">,FIELD_CHECKBOX</if>
-            <if test="fieldProvince != null">,FIELD_PROVINCE</if>
-            <if test="fieldDatetime != null">,FIELD_DATETIME</if>
-            ,GMT_CREATE
-            <if test="imagePathList != null">,IMAGE_PATH_LIST</if>
-            <if test="fieldHtmleditorCut != null">,FIELD_HTMLEDITOR_CUT</if>
-            <if test="fieldRadio != null">,FIELD_RADIO</if>
-            <if test="fieldNumber != null">,FIELD_NUMBER</if>
-            <if test="fieldTextarea != null">,FIELD_TEXTAREA</if>
-            <if test="fieldSelect != null">,FIELD_SELECT</if>
-            ,GMT_MODIFY
-            <if test="fieldText != null">,FIELD_TEXT</if>
-            <if test="fieldDate != null">,FIELD_DATE</if>
-            <if test="status != null">,STATUS</if>
-            <if test="fieldHtmleditor != null">,FIELD_HTMLEDITOR</if>
-            <if test="fieldCity != null">,FIELD_CITY</if>
-        </trim>
-        )values(
-<!--        <if test="_databaseId == 'oracle'">#{id},</if>-->
-        <trim prefix="" prefixOverrides=",">
-            <if test="fieldRegion != null">,#{fieldRegion,jdbcType=VARCHAR}</if>
-            <if test="imagePath != null">,#{imagePath,jdbcType=VARCHAR}</if>
-            <if test="fieldCheckbox != null">,#{fieldCheckbox,jdbcType=VARCHAR}</if>
-            <if test="fieldProvince != null">,#{fieldProvince,jdbcType=VARCHAR}</if>
-            <if test="fieldDatetime != null">,#{fieldDatetime,jdbcType=TIMESTAMP}</if>
-            ,
-            now()
-            <if test="imagePathList != null">,#{imagePathList,jdbcType=VARCHAR}</if>
-            <if test="fieldHtmleditorCut != null">,#{fieldHtmleditorCut,jdbcType=VARCHAR}</if>
-            <if test="fieldRadio != null">,#{fieldRadio,jdbcType=VARCHAR}</if>
-            <if test="fieldNumber != null">,#{fieldNumber,jdbcType=NUMERIC}</if>
-            <if test="fieldTextarea != null">,#{fieldTextarea,jdbcType=VARCHAR}</if>
-            <if test="fieldSelect != null">,#{fieldSelect,jdbcType=VARCHAR}</if>
-            ,
-            now()
-            <if test="fieldText != null">,#{fieldText,jdbcType=VARCHAR}</if>
-            <if test="fieldDate != null">,#{fieldDate,jdbcType=TIMESTAMP}</if>
-            <if test="status != null">,#{status,jdbcType=INTEGER}</if>
-            <if test="fieldHtmleditor != null">,#{fieldHtmleditor,jdbcType=VARCHAR}</if>
-            <if test="fieldCity != null">,#{fieldCity,jdbcType=VARCHAR}</if>
-        </trim>
-        )
-    </insert>
-
-    <update id="update" parameterType="demo">
-        update demo
-        <set>
-            <if test="fieldRegion != null">FIELD_REGION=#{fieldRegion,jdbcType=VARCHAR},</if>
-            <if test="imagePath != null">IMAGE_PATH=#{imagePath,jdbcType=VARCHAR},</if>
-            <if test="fieldCheckbox != null">FIELD_CHECKBOX=#{fieldCheckbox,jdbcType=VARCHAR},</if>
-            <if test="fieldProvince != null">FIELD_PROVINCE=#{fieldProvince,jdbcType=VARCHAR},</if>
-            <if test="fieldDatetime != null">FIELD_DATETIME=#{fieldDatetime,jdbcType=TIMESTAMP},</if>
-            <if test="gmtCreate != null">GMT_CREATE=#{gmtCreate,jdbcType=TIMESTAMP},</if>
-            <if test="imagePathList != null">IMAGE_PATH_LIST=#{imagePathList,jdbcType=VARCHAR},</if>
-            <if test="fieldHtmleditorCut != null">FIELD_HTMLEDITOR_CUT=#{fieldHtmleditorCut,jdbcType=VARCHAR},</if>
-            <if test="fieldRadio != null">FIELD_RADIO=#{fieldRadio,jdbcType=VARCHAR},</if>
-            <if test="fieldNumber != null">FIELD_NUMBER=#{fieldNumber,jdbcType=NUMERIC},</if>
-            <if test="fieldTextarea != null">FIELD_TEXTAREA=#{fieldTextarea,jdbcType=VARCHAR},</if>
-            <if test="fieldSelect != null">FIELD_SELECT=#{fieldSelect,jdbcType=VARCHAR},</if>
-            GMT_MODIFY=
-            now()
-            ,
-            <if test="fieldText != null">FIELD_TEXT=#{fieldText,jdbcType=VARCHAR},</if>
-            <if test="fieldDate != null">FIELD_DATE=#{fieldDate,jdbcType=TIMESTAMP},</if>
-            <if test="status != null">STATUS=#{status,jdbcType=INTEGER},</if>
-            <if test="fieldHtmleditor != null">FIELD_HTMLEDITOR=#{fieldHtmleditor,jdbcType=VARCHAR},</if>
-            <if test="fieldCity != null">FIELD_CITY=#{fieldCity,jdbcType=VARCHAR},</if>
-        </set>
-        where ID=#{id}
-    </update>
-
-    <select id="selectById" parameterType="long" resultMap="demoMap">
-        select *
-        from demo
-        where ID = #{id}
-    </select>
-
     <sql id="queryCommonSql">
         FROM demo d
         <!--        <if test="joinDemoChild1">, demo_child1 demoChild1</if>-->
@@ -296,15 +208,5 @@
         <include refid="queryCommonSql"/>
     </select>
 
-    <update id="updateStatus" parameterType="demo">
-        update demo
-        set status=#{status}
-        where ID = #{id}
-    </update>
 
-    <delete id="delete" parameterType="long">
-        delete
-        from demo
-        where ID = #{id}
-    </delete>
 </mapper>

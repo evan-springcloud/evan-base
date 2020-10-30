@@ -1,5 +1,6 @@
 package org.evan.springcloud.base.config.datasource;
 
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
@@ -35,7 +36,7 @@ public class MybatisIniter {
         Assert.notNull(dataSource, "dataSource is not null");
         Assert.notEmpty(mapperLocations, "mapperLocations can not empty");
 
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage(typeAliasesPackage);
         bean.setVfs(SpringBootVFS.class);

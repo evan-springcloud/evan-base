@@ -61,7 +61,7 @@ public class DemoApplicationService {
             result.setCodeAndMsg(OperateResultConstants.DATA_NOT_FIND.getCode(), "需要修改的Demo不存在或已删除,id[" + demoId + "]");
         } else {
             DemoDomain demo = demoFactory.createDemoDomain(demoId, demoAddUpdateParams);
-            demoMapper.update(demo);
+            demoMapper.updateById(demo);
         }
         return result;
     }
@@ -79,7 +79,7 @@ public class DemoApplicationService {
         if (demo == null) {
             throw new DataNotFindException("需要删除的Demo不存在或已删除,id[" + demoId + "]"); //通过抛异常的方式告知调用者
         } else {
-            demoMapper.delete(demoId);
+            demoMapper.deleteById(demoId);
         }
     }
 
@@ -91,7 +91,7 @@ public class DemoApplicationService {
      */
     public void removeBatch(Long[] demoIds) {
         for (long demoId : demoIds) {
-            demoMapper.delete(demoId);
+            demoMapper.deleteById(demoId);
         }
     }
 

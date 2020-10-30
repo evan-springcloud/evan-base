@@ -69,7 +69,7 @@ logging:
     java.sql.PreparedStatement: debug
     java.sql.ResultSet: debug
     org.springframework.jdbc.core: TRACE
-    com.shumai.tianyandata: DEBUG
+    org.evan.springcloud: DEBUG
     org.evan.libraries: DEBUG
     org.elasticsearch: debug
     org.mybatis.mapper: debug

@@ -1,6 +1,7 @@
 package test.evan.springcloud.base.demo;
 
 
+import org.evan.libraries.model.result.PageResult;
 import org.evan.springcloud.base.repository.mapper.first.DemoMapper;
 import org.evan.springcloud.base.model.demo.Demo;
 import org.evan.springcloud.base.model.demo.DemoQueryDTO;
@@ -46,7 +47,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
         demo.setFieldNumber(new BigDecimal("22121212.312121212"));
         demo.setFieldHtmleditor("aaa");
 
-        demoMapper.update(demo);
+        demoMapper.updateById(demo);
 
         LOGGER.info(">>>> test testUpdate:" + demo);
     }
@@ -59,7 +60,7 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 
     @Test
     public void testDelete() {
-        demoMapper.delete(4823L);
+        demoMapper.deleteById(4823L);
     }
 
     @Test
@@ -101,8 +102,8 @@ public class DemoMapperTest extends MySQLTestCaseSupport {
 //        demoQuery.setPageSize(4);
 //        demoQuery.setJoinDemoChild1(true);
 
-        int count = demoMapper.queryCount(demoQuery);
-        List<Demo> demos = demoMapper.queryList(demoQuery);
+
+        PageResult<Demo> demos = demoMapper.queryPage(demoQuery);
         //PageResult<Demo> pageResult = PageResult.create(demoQuery, demos, count);
 
         //log.info(pageResult.toString());

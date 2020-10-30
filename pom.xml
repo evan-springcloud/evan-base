@@ -25,7 +25,7 @@
     <properties>
         <commons-lang.version>3.5</commons-lang.version>
         <java.version>1.8</java.version>
-        <springboot.version>2.1.6.RELEASE</springboot.version>
+        <springboot.version>2.3.4.RELEASE</springboot.version>
         <spring.version>5.1.9.RELEASE</spring.version>
         <swagger.version>2.9.2</swagger.version>
         <mybatis-plus>3.2.0</mybatis-plus>
@@ -71,6 +71,28 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.evan.libraries</groupId>
+                <artifactId>evan-code-generater-maven-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <jdbcUrl>jdbc:mysql://121.40.245.248:3306/information_schema?useSSL=false</jdbcUrl>
+                    <jdbcUser>shumai</jdbcUser>
+                    <jdbcPassword>ShuMai@001</jdbcPassword>
+                    <databaseSchema>demo</databaseSchema>
+                    <packageNameRoot>com.shumai.tianyandata.merchant</packageNameRoot>
+                    <columnCreateTime>create_time</columnCreateTime>
+                    <columnUpdateTime>update_time</columnUpdateTime>
+                    <tables>
+                        <param>invoice_info</param>
+                    </tables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>

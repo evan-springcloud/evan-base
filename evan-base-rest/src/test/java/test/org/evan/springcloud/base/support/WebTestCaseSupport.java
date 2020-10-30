@@ -1,13 +1,12 @@
 package test.org.evan.springcloud.base.support;
 
 import lombok.extern.slf4j.Slf4j;
-import org.evan.libraries.web.client.TokenClientHttpRequestInterceptor;
 
+import org.evan.springcloud.core.components.restclient.TokenClientHttpRequestInterceptor;
 import org.evan.springcloud.core.oauth.LoginAccountSession;
 import org.evan.springcloud.core.oauth.LoginUser;
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.libraries.oauth.model.LoginAccountContext;
 import org.libraries.oauth.model.LoginAccountSetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

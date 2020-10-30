@@ -2,7 +2,7 @@
 spring:
   datasource1:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://121.40.245.248:3306/crawler?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://121.40.245.248:3306/demo?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
     username: shumai
     password: ShuMai@001
     druid:

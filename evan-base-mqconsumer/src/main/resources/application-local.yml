@@ -1,10 +1,10 @@
-eureka:
-  instance:
-    prefer-ip-address: true
-    ip-address: 121.40.245.205
-  client:
-    serviceUrl:
-      defaultZone: http://121.40.245.205:8001/eureka/
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 121.40.245.205
+#  client:
+#    serviceUrl:
+#      defaultZone: http://121.40.245.205:8001/eureka/
 
 spring:
   kafka:

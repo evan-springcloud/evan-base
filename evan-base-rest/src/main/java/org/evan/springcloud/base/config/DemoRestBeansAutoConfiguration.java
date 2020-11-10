@@ -17,12 +17,18 @@ public class DemoRestBeansAutoConfiguration extends AbstractRestBeansAutoConfigu
     public void putInterceptorExcludes(Collection<String> excludes) {
 //        excludes.add("/**/login");
 //        excludes.add("/**/login/**");
-        excludes.add("/**/demo/**");
-        excludes.add("/**/account/**");
+        excludes.add("/**/login");
         excludes.add("/**/upload/image");
         excludes.add("/**/validate-code/image/**");
-        excludes.add("/pay/wap/alipay/notify");
-        excludes.add("/pay/wap/wxpay/notify");
+    }
+
+    /**
+     * 设置鉴权拦截器免登陆接口地址
+     *
+     * @param notRequiredLoginPaths
+     */
+    protected void putNotRequiredLoginPaths(Collection<String> notRequiredLoginPaths) {
+        notRequiredLoginPaths.add("/**/demo/**");
     }
 
     @Bean

@@ -3,7 +3,7 @@ package test.org.evan.springcloud.base.support;
 import lombok.extern.slf4j.Slf4j;
 
 import org.evan.springcloud.core.components.restclient.TokenClientHttpRequestInterceptor;
-import org.evan.springcloud.core.oauth.LoginAccountSession;
+import org.evan.springcloud.core.oauth.LoginAccountWebSession;
 import org.evan.springcloud.core.oauth.LoginUser;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class WebTestCaseSupport implements WebMvcConfigurer {
     private TokenClientHttpRequestInterceptor tokenClientHttpRequestInterceptor;
 
     @Autowired
-    private LoginAccountSession loginUserSession;
+    private LoginAccountWebSession loginUserSession;
 
     @Value("${local.server.port}")
     private int port;

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.RestResponse;
 import org.evan.libraries.web.utils.HttpUtil;
 import org.evan.springcloud.core.oauth.LoginAccountWebSession;
+import org.evan.springcloud.core.oauth.LoginAdmin;
 import org.evan.springcloud.core.oauth.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,20 +19,19 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Evan.Shen
- * @since 2020-10-30
+ * @since 2020-11-10
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("admin")
 @Slf4j
 @Api(description = "登录和退出")
-public class UserLoginController {
-
+public class AdminLoginController {
     @Autowired
     private LoginAccountWebSession session;
 
     @ApiOperation(value = "登录", notes = "登录接口参数中不传递密码，用密码生成sign，再传递该sign即可<br>返回：SUCCESS:成功；ACCOUNT_OR_PWD_WRONG:账号密码错误；ACCOUNT_FROZENED:账号被冻结")
     @PostMapping("login")
-    public RestResponse<LoginUser> login(
+    public RestResponse<LoginAdmin> login(
             HttpServletRequest request,
             @ApiParam(value = "账号", required = true) @RequestParam("account") String account,
             @ApiParam(value = "随机数，内容数字或字符串，最大长度40，随机数生产方式不限", required = true) @RequestParam("random") String random,
@@ -40,15 +40,15 @@ public class UserLoginController {
 
     ) {
 
-        LoginUser loginUser = new LoginUser();
+        LoginAdmin loginAdmin = new LoginAdmin();
 
-        loginUser.setId(1L);
-        loginUser.setAccount(account);
-        loginUser.setRemoteAddr(HttpUtil.getRemoteAddr(request));
+        loginAdmin.setId(1L);
+        loginAdmin.setAccount(account);
+        loginAdmin.setRemoteAddr(HttpUtil.getRemoteAddr(request));
 
-        session.save(loginUser);
+        session.save(loginAdmin);
 
-        return RestResponse.create(loginUser);
+        return RestResponse.create(loginAdmin);
     }
 
     @ApiOperation(value = "退出", notes = "")

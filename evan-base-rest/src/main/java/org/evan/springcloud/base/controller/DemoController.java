@@ -10,6 +10,8 @@ import org.evan.springcloud.base.model.demo.DemoVO;
 import org.evan.springcloud.base.service.demo.DemoApplicationService;
 import org.evan.springcloud.base.service.demo.DemoReadService;
 import org.evan.springcloud.base.enums.PublishStatusEnum;
+import org.libraries.oauth.model.LoginAccount;
+import org.libraries.oauth.model.LoginAccountContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
@@ -38,6 +40,12 @@ public class DemoController {
 
     @Autowired
     private Environment environment;
+
+    @ApiOperation(value = "当前登录用户")
+    @GetMapping("loginAccount")
+    public RestResponse<LoginAccount> loginAccount() {
+        return RestResponse.create(LoginAccountContext.get());
+    }
 
     @ApiOperation(value = "分页列表")
     @GetMapping("list")

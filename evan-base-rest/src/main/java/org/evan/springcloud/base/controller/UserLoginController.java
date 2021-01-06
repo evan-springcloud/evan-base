@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.evan.libraries.model.result.RestResponse;
 import org.evan.libraries.web.utils.HttpUtil;
+import org.evan.springcloud.core.oauth.LoginAccountSession;
 import org.evan.springcloud.core.oauth.LoginAccountWebSession;
 import org.evan.springcloud.core.oauth.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserLoginController {
 
     @Autowired
-    private LoginAccountWebSession session;
+    private LoginAccountSession session;
 
     @ApiOperation(value = "登录", notes = "登录接口参数中不传递密码，用密码生成sign，再传递该sign即可<br>返回：SUCCESS:成功；ACCOUNT_OR_PWD_WRONG:账号密码错误；ACCOUNT_FROZENED:账号被冻结")
     @PostMapping("login")
@@ -54,7 +55,7 @@ public class UserLoginController {
     @ApiOperation(value = "退出", notes = "")
     @PostMapping("logout")
     public RestResponse logout(HttpServletRequest request) {
-        session.remove(request);
+//        session.remove(request);
         return RestResponse.create();
     }
 }
